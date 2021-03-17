@@ -1,0 +1,42 @@
+/*** #### Through command prompt *******/
+
+D:\git>git clone {git url}
+D:\git>git status
+D:\git>cd centlia_6Feb2020
+D:\git\centlia_6Feb2020>git status
+D:\git\centlia_6Feb2020>git add *
+D:\git\centlia_6Feb2020>git commit -m "first commit"
+D:\git\centlia_6Feb2020>git remote
+D:\git\centlia_6Feb2020>git push origin main
+D:\git\centlia_6Feb2020>git push origin main
+D:\git\centlia_6Feb2020>
+
+/*** #### Through command prompt *******/
+
+
+
+git init
+git add *       .
+git commit -m "initial commit"
+
+git remote add origin (remote repository URL)
+git remote set-url origin git://new.url.here
+
+git remote -v
+git push -f origin master
+git push --set-upstream origin master
+
+
+git remote remove origin
+git remote rm origin
+
+/********/
+git init
+git add -A
+git commit -m 'Added my project'
+git remote add origin git@github.com:sammy/my-new-project.git
+git push -u -f origin master
+
+/***************/
+
+
