@@ -1,0 +1,93 @@
+python login and registeration
+
+#### settings.py
+INSTALLED_APPS = [ 'accounts', 'django.contrib.admin',
+
+#### index.html
+    <body>
+        {% block content %}
+        <h1>Hello World</h1>
+        {% endblock %}
+    </body>
+
+#### register.html
+{% extends 'index.html' %}
+{% block content %}
+<h1>Create a new user</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Register</button>
+</form>
+{% endblock %}
+
+#### accounts/urls.py
+from django.urls import path
+from . import views
+urlpatterns=[ path('', views.index, name=''), path('register/',views.register, name='register')]
+
+##### login/urls.py
+from django.contrib import admin
+from django.urls import path,include
+urlpatterns = [path('admin/', admin.site.urls), path('', include('accounts.urls')),]
+
+###### views.py
+from django.shortcuts import render,redirect
+from django.contrib.auth.forms import UserCreationForm
+# Create your views here.
+def index(request):
+    return render(request, 'index.html')
+def register(request):
+    if request.method == 'POST':
+        form=UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form =UserCreationForm()
+    return render(request, 'registeration/register.html', {'form':form})#### settings.py
+INSTALLED_APPS = [ 'accounts', 'django.contrib.admin',
+
+#### index.html
+    <body>
+        {% block content %}
+        <h1>Hello World</h1>
+        {% endblock %}
+    </body>
+
+#### register.html
+{% extends 'index.html' %}
+{% block content %}
+<h1>Create a new user</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Register</button>
+</form>
+{% endblock %}
+
+#### accounts/urls.py
+from django.urls import path
+from . import views
+urlpatterns=[ path('', views.index, name=''), path('register/',views.register, name='register')]
+
+##### login/urls.py
+from django.contrib import admin
+from django.urls import path,include
+urlpatterns = [path('admin/', admin.site.urls), path('', include('accounts.urls')),]
+
+###### views.py
+from django.shortcuts import render,redirect
+from django.contrib.auth.forms import UserCreationForm
+# Create your views here.
+def index(request):
+    return render(request, 'index.html')
+def register(request):
+    if request.method == 'POST':
+        form=UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form =UserCreationForm()
+    return render(request, 'registeration/register.html', {'form':form})
