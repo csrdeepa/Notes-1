@@ -1,0 +1,78 @@
+// ####### https://code.visualstudio.com/docs/python/tutorial-django
+
+// ####### py new project creation
+
+install py
+pip -> get-pip install 
+virtualenv -> pip install virtualenv
+virtualenv src
+cd src/scripts
+activate.bat
+pip freeze - list files inside folder
+pip install django
+
+
+cd py/src/scripts
+activate.bat
+django-admin startproject mysite
+cd mysite
+py manage.py
+py manage.py runserver
+python manage.py startapp app1
+
+app1->view.py
+mysite-> urls.py
+python manage.py runserver 7000 (with in virtual env)
+http://127.0.0.1:7000
+
+create templates folder inside app1
+create index.html inside templates(more than once)
+
+define html files into views and urls
+
+
+create static folder in app1
+create style.css
+ and link with html file
+
+/**************************/
+ctrl+shift+p -> selece json settings
+(Next time onwards
+open Python Terminal (Ctrl-Shift-P: Python: Create Terminal)
+
+change :python.pythonPath -> existing path to our venv path
+
+/***************/
+http://127.0.0.1:7000/admin
+python manage.py createsuperuser
+
+if not created then run,
+
+python manage.py makemigrations
+python manage.py migrate
+
+then run
+python manage.py createsuperuser
+
+create username and password
+
+then run
+python manage.py runserver
+
+
+/***************/
+modify -> app1/ models.py (create sqllite db) (set of classes with databases)
+modify -> app1/admin.py
+
+then migrate -> python manage.py makemigrations
+python manage.py migrate
+
+/******************/
+
+install sqllite 
+/****************************/
+
+open admin add bios -> add record
+
+modify views.py (pass data with template)
+modify index.html ( append or show data)
