@@ -1,0 +1,137 @@
+
+############### preference => opensettings JSON
+    #//"python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe",
+    "python.pythonPath": "D:\\py\\src\\Scripts\\python.exe",
+############### app/views.py
+
+from django.shortcuts import render
+
+# from django.http import HttpResponse
+
+# def index1(request):
+#     return HttpResponse("hello world")
+
+# def index1(request):
+#     return render(request, "index1.html",{})
+
+def index1(request):
+    return render(request, "index1.html",{})
+
+def index2(request):
+    return render(request, "index2.html",{})
+
+
+############ mysite-> urls.py
+
+from django.contrib import admin
+from django.urls import path
+from app1 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',views.index1 ,name='index1'),
+    path('testindex2',views.index2 ,name='index2')
+]
+
+############ templates -> index1.html
+<html>
+    <head>
+        <title>I am working</title>
+        {% load static %}
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'style.css' %} " > -->
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    </head>
+    <body>
+        <h1>Hey i am working in Django !!! :::)</h1>
+    </body>
+</html>
+
+############ templates -> index1.html
+<html>
+    <head>
+        <title>I am working</title>
+    </head>
+    <body>
+        <h1>Hey i am working in page2 !!!</h1>
+    </body>
+</html>
+
+############ static -> style.css
+h1{
+    color:blue;
+}
+body{
+    color: brown;
+}
+
+################ http://127.0.0.1:7000/admin
+
+############ app/models.py
+from django.db import models
+
+# Create your models here.
+
+class Bio(models.Model):
+    Name=models.CharField(max_length=30)
+    Email=models.EmailField()
+
+########## app/admin.py
+from django.contrib import admin
+# Register your models here.
+
+from app1.models import Bio
+admin.site.register(Bio)
+
+#################/**** views.py
+from django.shortcuts import render
+from app1.models import Bio
+ 
+def index1(request):
+    key=Bio.objects.all()
+    return render(request, "index1.html",{'data':key})
+
+#################/**** index1.py
+<html>
+    <head>
+        <title>I am working</title>
+        {% load static %}
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'style.css' %} " > -->
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    </head>
+    <body>
+        <h1>List of Bio</h1>
+        {% for i in data %}
+        {{i.Name}} <br>
+        {{i.Email}}
+        {% endfor %}
+    </body>
+</html>
+
+######## app1/urls.py
+from django.urls import path
+
+from . import views
+
+urlpatterns=[
+    path('',views.index, name='index')
+]
+
+########### mysite/urls.py
+from django.contrib import admin
+from django.urls import path,include
+# from app1 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('app1.urls'))
+    # path('',views.index1 ,name='index1'),
+    # path('testindex2',views.index2 ,name='index2')
+]
+
+######### index.html
+{% load static%}
+
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
