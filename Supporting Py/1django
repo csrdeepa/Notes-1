@@ -11,6 +11,32 @@ activate.bat
 pip freeze - list files inside folder
 pip install django
 
+[or]
+
+How to install Django framework:
+Step 1: 
+	first check your python version from anywhere in the path
+		c:/python (or)python3
+Step 2: 
+	create virtualenv (run from d:py) (src or env)
+		python -m venv src
+Step 3: 
+	activate your virtualenv (cd d:py/src/scripts)
+		activate.bat
+		(or)
+		from the vscode terminal(Ctrl+Shift+`)
+Step 4: 
+	check the package details in the virtualenv
+Step 5: 
+	install django framework
+		Install PIP with this command : easy_install pip
+		Clean Django : pip uninstall django
+		install Django : pip install django
+			Run -> django-admin startproject mysite
+			
+Step 6: 
+	run django- framework
+ []
 
 cd py/src/scripts
 activate.bat
