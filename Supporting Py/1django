@@ -42,7 +42,7 @@ cd py/src/scripts
 activate.bat
 django-admin startproject mysite
 cd mysite
-py manage.py
+ 
 py manage.py runserver
 python manage.py startapp app1
 
