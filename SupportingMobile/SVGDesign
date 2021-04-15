@@ -1,0 +1,56 @@
+
+<!-- #Formula for Circle # -->
+<path 
+    d="
+    M cx cy
+    m -r, 0
+    a r,r 0 1,0 (r * 2),0
+    a r,r 0 1,0 -(r * 2),0
+    "
+/>
+<!-- In other words, this: -->
+
+<circle cx="100" cy="100" r="75" />
+<!-- can be achieved as a path with this: -->
+
+  <path 
+        d="
+        M 100, 100
+        m -75, 0
+        a 75,75 0 1,0 150,0
+        a 75,75 0 1,0 -150,0
+        "
+  />
+<!-- @Formula for Circle @ -->
+
+<!-- #Circle Example# -->
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="220px" height="220px">
+    <defs>
+        <style>
+            circle, path {
+                fill: none;
+                stroke-width: 5;
+                stroke-opacity: .5;
+            }
+            circle {
+                stroke: red;
+            }
+            path {
+                stroke: yellow;
+            }
+        </style>
+    </defs>
+      <circle cx="100" cy="100" r="50" />
+
+      <path 
+            d="
+            M 100, 100
+            m -75, 0
+            a 75,75 0 1,0 150,0
+            a 75,75 0 1,0 -150,0
+            "
+      />
+</svg>
+<!-- @Circle Example@ -->
+
