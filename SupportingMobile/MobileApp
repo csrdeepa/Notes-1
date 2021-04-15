@@ -1,0 +1,43 @@
+MAP Formulas:
+mapBoundaries :  {
+"northEast": {"latitude": 1.925508454276812, "longitude": 104.0832918137312}, 
+ "southWest": {"latitude": 0.9550867075705964, "longitude": 103.49726635962725}}    
+
+// ne=(lan, lng)
+// nw=(ne.lan, sw.lng)
+// sw=(lat, lng)
+// se=(sw.lat, ne.lng)
+
+Ref: https://agostini.tech/2017/03/13/map-clustering-with-quadtrees-using-googlemaps/
+South	-> 	min lat - southWestCoord.latitude
+North	->	max lat - northEastCoord.latitude
+West	->	min long - southWestCoord.longitude
+East	->	max long - northEastCoord.longitude
+
+
+ boundarypolygons :  [
+    {"lat": 1.925508454276812, "lng": 104.0832918137312}, // ne=(lan, lng)
+    {"lat": 1.925508454276812, "lng": 103.49726635962725}, // nw=(ne.lan, sw.lng)
+    {"lat": 0.9550867075705964, "lng": 103.49726635962725}, // sw=(lat, lng)
+    {"lat": 0.9550867075705964, "lng": 104.0832918137312}       // se=(sw.lat, ne.lng)
+    ]
+
+/**********************/
+
+Wordpress REST API Handbook:
+https://developer.wordpress.org/rest-api/reference/
+
+React + Fetch - HTTP GET Request Examples
+https://jasonwatmore.com/post/2020/01/27/react-fetch-http-get-request-examples
+
+Other HTTP examples available:
+•	React + Fetch: POST, PUT, DELETE
+•	React + Axios: GET, POST
+•	Angular: GET, POST, PUT, DELETE
+•	Vue + Fetch: GET, POST
+•	Vue + Axios: GET, POST
+•	Blazor WebAssembly: GET, POST
+
+//https://developers.google.com/maps/documentation/geocoding/overview#Types
+
+ 
