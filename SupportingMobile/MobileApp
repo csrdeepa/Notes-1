@@ -41,3 +41,30 @@ Other HTTP examples available:
 //https://developers.google.com/maps/documentation/geocoding/overview#Types
 
  
+/**********************/
+SQL LITE CRUD EXAMPLE
+
+https://aboutreact.com/example-of-sqlite-database-in-react-native/
+
+/**********************/
+REACT NATIVE and WOOCOMMERCE
+
+import WooCommerceAPI from 'react-native-woocommerce-api';
+
+const WooCommerce = new WooCommerceAPI({
+    url: 'http://devdomain:8035/wordpressapi/',
+    consumerKey: 'ck_939c16e08deb16f0d21bd5dfacb46f92a97d11c0',
+    consumerSecret: 'cs_2a750e33adda6fbc85bb03cff4d3d7a1b8189af3',
+    wpAPI: true,
+    version: 'wc/v3',
+    queryStringAuth: true
+    // oauth_consumer_key: 'ck_3807ad53316b2434c2c9577fa22cfadff74ac68f',
+    // oauth_nonce: 'FPOJDvdWOJG',
+    // oauth_signature: 'eCz5GknsAEfmooWnNTyifwKuMsm/QIYBunqX+blH8lg=',
+    // oauth_signature_method: 'HMAC-SHA256',
+    // oauth_timestamp: '1619002750',
+    // oauth_version: '1.0'
+
+});
+
+/**********************/
