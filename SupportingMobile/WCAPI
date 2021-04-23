@@ -1,0 +1,55 @@
+// https://stackoverflow.com/questions/45463628/woocommerce-rest-api-oauth-with-javascript?noredirect=1&lq=1
+
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import OAuth from 'oauth-1.0a';
+import CryptoJS from 'crypto-js';
+import axios from 'axios';
+
+const ck = 'ck_3807ad53316b2434c2c9577fa22cfadff74ac68f'
+const cs = 'cs_4dd1af1fc6db17b68b6e6083beab670d6f2955cf'
+const url = 'http://192.168.170.200:8035/wordpressapi/wp-json/wc/v2/products'
+
+const oauth = OAuth({
+    consumer: {
+        key: ck,
+        secret: cs
+    },
+    signature_method: 'HMAC-SHA1',
+    hash_function: function (base_string, key) {
+        return CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(base_string, key));
+    }
+});
+
+const requestData = {
+    url: url,
+    method: 'GET'
+};
+
+class Cr extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
+    componentDidMount = () => {
+        axios.get(requestData.url, { params: oauth.authorize(requestData) }).then(
+            function (response) {
+                console.log(response.data);
+            },
+            function (error) {
+                console.log(error);
+            }
+        );
+    };
+
+    render() {
+        return (
+            <View>
+                <Text> Cr </Text>
+            </View>
+        );
+    }
+}
+
+export default Cr;
