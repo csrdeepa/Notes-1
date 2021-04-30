@@ -31,3 +31,30 @@ function rest_get_user_field( $user, $field_name, $request ) {
     }
 	return get_user_meta( $user[ 'id' ], $field_name, true );
 }
+
+function fget_order_details($order_id) {
+	if ( is_user_logged_in() ) {
+    echo 'User ID: ' . get_current_user_id();
+} else {
+    echo 'Hello visitor!';
+}
+    $order = new WC_Order( $order_id );
+	$query = new WC_Order_Query( array(
+    'limit' => 10,
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'return' => 'ids',
+	'customer' => get_current_user_id(),
+) );
+	$query->set( 'customer', 'osoftzwp@gmail.com' );
+	$test = $order->get_total();
+    $orders = $query->get_orders();
+
+	var_dump($orders);
+	var_dump($test);
+ 	echo WC()->cart->get_cart_contents_count(); 
+	echo '<br>';
+	echo WC()->cart->get_cart_contents_total();
+}
+  
+add_action( 'wp_footer', 'fget_order_details');
