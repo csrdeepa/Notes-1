@@ -40,3 +40,12 @@ git push -u -f origin master
 /***************/
 
 
+/**********ISSUE SOLVED*********/
+Cloning into 'WoocommerceCart'... remote: Repository not found.
+
+Solution:
+  Open Control Panel from the Start menu
+  Select User Accounts
+  Select "Manage your credentials" in the left hand menu
+  Delete any credentials related to Git or GitHub
+
