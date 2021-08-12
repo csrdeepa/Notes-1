@@ -279,94 +279,96 @@ function viewcart($request)
  
 }
 
-/* Add to cart */
-/* Add to cart product api */
+
+/* Add to cart product api */               
+
+// https://www.forumming.com/question/159/add-products-to-user-39-s-id-woocommerce 
+// http://192.168.170.200:8034/wp-json/sz-auth/v1/add_to_cart_product?user_id=3&product_id=37&quantity=5
+
 add_action( 'rest_api_init', function () {
-    register_rest_route( 'sz-auth/v1', 'add_to_cart_product1', array(
+    register_rest_route( 'sz-auth/v1', 'add_to_cart_product', array(
         'methods' => array('GET','POST'),
-        'callback' => 'add_to_cart_product1',
+        'callback' => 'add_to_cart_product',
     ) );
 } );
  
 
-function add_to_cart_product1($request)
+function add_to_cart_product($request)
 {
-    global $woocommerce,$wpdb;
-
-    /* Required Parameters
-    $_POST['user_id']
-    $_POST['product_id'] */
-
-    // $pid=79;
-    // $qty=33;
-    // $user=3;   
+    global $woocommerce, $wpdb;
 
     $pid=$request['product_id'];
-    $qty=$request['quantity'];
     $user=$request['user_id'];  
+    $qty=$request['quantity'];  
 
-    wp_set_current_user($pid);
+    wp_set_current_user($user);
     wp_set_auth_cookie($user);
-
- 
-    $array = $wpdb->get_results("select meta_value from ".$wpdb->prefix."usermeta where meta_key='_woocommerce_persistent_cart_1' and user_id = ".$user);
+  
+    $array = $wpdb->get_results("select meta_value from ".$wpdb->prefix."usermeta where meta_key='_woocommerce_persistent_cart_1' and user_id = ".$user );   
     $data =$array[0]->meta_value;
     $cart_data=unserialize($data);
 
     $flag = 0;
     foreach($cart_data['cart'] as $key => $val) {
-        //$_product = $val['data'];
         if($val['product_id'] != $pid){
-            $flag = 1;
+            $flag = 0;
         }
         elseif($val['product_id'] == $pid) {
             $flag = 2;
-
         }
     }
+ 
     if($flag == 2){
-        // $cart_data['cart'][$key]['quantity']++;
-        $cart_data['cart'][$key]['quantity']=$qty;
-        echo "Already exists";
+        $cart_data['cart'][$key]['quantity']++;
     }
     else{
-        echo "New Products";
-        // $string = $woocommerce->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] );
-         $string = 'vccvcxvcxvcxvcxvxcvcxvcxvcxdfdsf4234234';
-        $product = wc_get_product( $pid);
+     
+        // if ( is_null( WC()->customer ) || ! WC()->customer instanceof WC_Customer ) {
+		// 	$customer_id = strval( get_current_user_id() );
+
+		// 	WC()->customer = new WC_Customer( $customer_id, true );
+
+		// 	// Customer should be saved during shutdown.
+		// 	add_action( 'shutdown', array( WC()->customer, 'save' ), 10 );
+		// }
+
+		if ( is_null( WC()->cart ) || !  WC()->instance()->cart ) {
+            WC()->session = new WC_Session_Handler();
+            WC()->session->init();
+            WC()->customer = new WC_Customer( get_current_user_id(), true );
+            WC()->cart = new WC_Cart();
+		}
+
+        $string = WC()->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] ); //$woocommerce->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] );
+        $product = wc_get_product( $pid );
         $cart_data['cart'][$string] = array(
             'key' => $string,
-            'product_id' => $pid,
+            'product_id' =>$pid,
             'variation_id' => 0,
             'variation' => array(),
-            'quantity' => $qty,
+            'quantity' => 1,
             'line_tax_data' => array(
                 'subtotal' => array(),
                 'total' => array()
             ),
-            'line_subtotal' => $product->get_price(),
-            'line_subtotal_tax' => 0,
-            'line_total' => $product->get_price(),
-            'line_tax' => 0,
+            // 'line_subtotal' => $product->get_price(),
+            // 'line_subtotal_tax' => 0,
+            // 'line_total' => $product->get_price(),
+            // 'line_tax' => 0,
         );
-
-
+    }
 
     //echo "<pre>";
     //print_r($cart_data);
     //exit;
     //$serialize_data = serialize($cart_data);
-    //$woocommerce->cart->add_to_cart( $pid );
-    update_user_meta($user,'_woocommerce_persistent_cart_1',$cart_data);
-    // return cart_items(); // API response whatever you want
+    // $woocommerce->cart->add_to_cart( $pid );
 
-    }
- 
+    update_user_meta($user,'_woocommerce_persistent_cart_1',$cart_data);
+
     $carttot="";
     // $carttot=count(WC()->cart->get_cart());
     return $carttot;
-
-}
 
 /************************************  ######TEST######  ********************** */
 function my_awesome_func($data)
