@@ -369,7 +369,81 @@ function add_to_cart_product($request)
     $carttot="";
     // $carttot=count(WC()->cart->get_cart());
     return $carttot;
+/************************************  ######TEST######  ********************** */
 
+/* View cart product api */
+//https://stackoverflow.com/questions/61941359/rest-api-to-store-products-in-cart-based-on-the-user-id-in-woocommerce
+//http://192.168.170.200:8034/wp-json/sz-auth/v1/woocomm_add_to_cart?user_id=3&products=[{product_id:26,quantity:5},{product_id:47,quantity:2}]
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'sz-auth/v1', 'woocomm_add_to_cart', array( //wp/v2
+        'methods' => array('GET','POST'),
+        'callback' => 'woocomm_add_to_cart',
+    ) );
+} );
+
+function woocomm_add_to_cart($param) {
+
+    global $wpdb;
+    $user_id = $param['user_id'];
+    $objProduct = new WC_Session_Handler();
+
+    // echo "Params:  ";
+    // var_dump($param['user_id']);
+    $wc_session_data = $objProduct->get_session($user_id);
+    
+    // Get the persistent cart may be _woocommerce_persistent_cart can be in your case check in user_meta table
+    $full_user_meta = get_user_meta($user_id,'_woocommerce_persistent_cart_1',true);
+    
+    $cartObj = new WC_Cart();    // create new Cart Object
+    
+    // Add old cart data to newly created cart object
+    if($full_user_meta['cart']) {
+        foreach($full_user_meta['cart'] as $sinle_user_meta) {
+            $cartObj->add_to_cart( $sinle_user_meta['product_id'], $sinle_user_meta['quantity']  );
+        }
+    }
+    
+    // Add product and quantities coming in request to the new cart object
+    if($param['products']){
+        foreach($param['products'] as $prod) {
+            $cartObj->add_to_cart( $prod['product_id'], $prod['quantity']  );
+        }
+    }
+    
+    $updatedCart = [];
+    foreach($cartObj->cart_contents as $key => $val) {
+        unset($val['data']);
+        $updatedCart[$key] = $val;
+    }
+    
+    // If there is a current session cart, overwrite it with the new cart
+    if($wc_session_data) {
+        $wc_session_data['cart'] = serialize($updatedCart);
+        $serializedObj = maybe_serialize($wc_session_data);
+    
+    
+        $table_name = 'wp_woocommerce_sessions';
+    
+        // Update the wp_session table with updated cart data
+        $sql ="UPDATE $table_name SET 'session_value'= '".$serializedObj."', WHERE  'session_key' = '".$user_id."'";
+    
+        // Execute the query
+        $rez = $wpdb->query($sql);
+    }
+    
+    // Overwrite the persistent cart with the new cart data
+    $full_user_meta['cart'] = $updatedCart;
+    update_user_meta($user_id, '_woocommerce_persistent_cart_1', $full_user_meta);
+    
+    $response = [
+        'status' => true,
+        'message' => 'Products successfully added to cart'
+    ];
+    
+    return rest_ensure_response($response);
+    
+    
+    }	
 /************************************  ######TEST######  ********************** */
 function my_awesome_func($data)
 {
