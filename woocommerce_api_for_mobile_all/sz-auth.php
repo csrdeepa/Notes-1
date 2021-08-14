@@ -38,6 +38,7 @@ http://192.168.170.200:8034/wp-json/wc/v3/orders/<id>
 if (!defined('WPINC')) {
     die;
 }
+defined( 'WC_ABSPATH' );
 
 require plugin_dir_path(__FILE__) . 'includes/class-sz-auth.php';
 
@@ -137,17 +138,17 @@ function reguser($param) {
     // Delete it when you're done.
     require_once('wp-blog-header.php');
     require_once('wp-includes/registration.php');
-    // ----------------------------------------------------
 
+    // ----------------------------------------------------
     // CONFIG VARIABLES
-    // Make sure that you set these before running the file.
     $newusername = $param['newusername'];
     $newpassword = $param['newpassword'];
     $newemail = $param['newemail'];
     $firstname = $param['firstname'];
     $lastname = $param['lastname'];    
     $billing_city = $param['billing_city'];
-    $gender = $param['gender'];              
+    $gender = $param['gender'];      
+            
     // ----------------------------------------------------
     // This is just a security precaution 
     // if ( $newpassword != 'YOURPASSWORD' && $newemail != 'YOUREMAIL@TEST.com' && $newusername !='YOURUSERNAME' )
@@ -190,8 +191,6 @@ function reguser($param) {
     }
 }
     
-
-
 //RECENT PRODUCTS
 //http://devdomain:8034/wp-json/sz-auth/v1/recent_product
 add_action('rest_api_init', function () {
@@ -222,8 +221,7 @@ function recentproduct($request)
         return new WP_REST_Response($result, 200);
 }
 
-
-/* View cart product api */
+/********************** View cart product api **********************/
 /* http://192.168.170.200:8034/wp-json/sz-auth/v1/cart?
 oauth_consumer_key=ck_6e&
 oauth_nonce=fzi0ywUyowF&
@@ -240,415 +238,114 @@ add_action( 'rest_api_init', function () {
     ) );
 } );
 
-function viewcart($request)
-{
+function viewcart($request){
     // var_dump($request);
     global $woocommerce,$wpdb;
     wp_set_current_user($request['user_id']);
     wp_set_auth_cookie($request['user_id']);
     $user = wp_get_current_user();
+    $meta_key='_woocommerce_persistent_cart_1';
  
-    $usermeta=get_user_meta($request['user_id'],'_woocommerce_persistent_cart_1',true);
+    $usermeta=get_user_meta($request['user_id'],$meta_key,true);
+    if ( $usermeta ) {
+        $result = array();
+        if($usermeta){
+            $carttot=0;
+            foreach($usermeta["cart"] as $key => $val) {
+                // var_dump($val);
+                foreach($val as $k => $v) {
+                    if ($k=="quantity"){
+                        $carttot += $v;
+                    }
+                }
+            }
 
-    $carttot=0;
-    foreach($usermeta["cart"] as $key => $val) {
-        // var_dump($val);
-        foreach($val as $k => $v) {
-            if ($k=="quantity"){
-                $carttot += $v;
+            if ( !is_wp_error($user) ){
+                $result['cartdata'] = $usermeta["cart"];
+                $result['carttotal'] = $carttot;        
+                $result['success'] =true;
+                $result['status']=200;
+            }
+            else
+            {
+                $result['status']=201;
+                $result['success'] =false;
+                $result['message'] ="Incorrect Value Passed !!";
             }
         }
-      }
-
-    $result = array();
-    if ( !is_wp_error($user) ){
-        $result['cartdata'] = $usermeta["cart"];
-        $result['carttotal'] = $carttot;        
-        $result['success'] =true;
-        $result['status']=200;
-    }
-    else
-    {
-        $result['status']=201;
-        $result['success'] =false;
-        $result['message'] ="Incorrect Value Passed !!";
     }
     // return  $carttot ;
     return new WP_REST_Response($result, 200);
-
- 
 }
 
 
-/* Add to cart product api */               
+/***********************  Add to cart product api ***********************/               
 
-// https://www.forumming.com/question/159/add-products-to-user-39-s-id-woocommerce 
-// http://192.168.170.200:8034/wp-json/sz-auth/v1/add_to_cart_product?user_id=3&product_id=37&quantity=5
+// https://www.forumming.com/question/159/add-products-to-user-39-s-id-woocommerce  -   wrong
+// https://stackoverflow.com/questions/61941359/rest-api-to-store-products-in-cart-based-on-the-user-id-in-woocommerce
 
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'sz-auth/v1', 'add_to_cart_product', array(
-        'methods' => array('GET','POST'),
-        'callback' => 'add_to_cart_product',
-    ) );
-} );
- 
-
-function add_to_cart_product($request)
-{
-    global $woocommerce, $wpdb;
-
-    $pid=$request['product_id'];
-    $user=$request['user_id'];  
-    $qty=$request['quantity'];  
-
-    wp_set_current_user($user);
-    wp_set_auth_cookie($user);
-  
-    $array = $wpdb->get_results("select meta_value from ".$wpdb->prefix."usermeta where meta_key='_woocommerce_persistent_cart_1' and user_id = ".$user );   
-    $data =$array[0]->meta_value;
-    $cart_data=unserialize($data);
-
-    $flag = 0;
-    foreach($cart_data['cart'] as $key => $val) {
-        if($val['product_id'] != $pid){
-            $flag = 0;
-        }
-        elseif($val['product_id'] == $pid) {
-            $flag = 2;
-        }
-    }
- 
-    if($flag == 2){
-        $cart_data['cart'][$key]['quantity']++;
-    }
-    else{
-     
-        // if ( is_null( WC()->customer ) || ! WC()->customer instanceof WC_Customer ) {
-		// 	$customer_id = strval( get_current_user_id() );
-
-		// 	WC()->customer = new WC_Customer( $customer_id, true );
-
-		// 	// Customer should be saved during shutdown.
-		// 	add_action( 'shutdown', array( WC()->customer, 'save' ), 10 );
-		// }
-
-		if ( is_null( WC()->cart ) || !  WC()->instance()->cart ) {
-            WC()->session = new WC_Session_Handler();
-            WC()->session->init();
-            WC()->customer = new WC_Customer( get_current_user_id(), true );
-            WC()->cart = new WC_Cart();
-		}
-
-        $string = WC()->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] ); //$woocommerce->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] );
-        $product = wc_get_product( $pid );
-        $cart_data['cart'][$string] = array(
-            'key' => $string,
-            'product_id' =>$pid,
-            'variation_id' => 0,
-            'variation' => array(),
-            'quantity' => 1,
-            'line_tax_data' => array(
-                'subtotal' => array(),
-                'total' => array()
-            ),
-            // 'line_subtotal' => $product->get_price(),
-            // 'line_subtotal_tax' => 0,
-            // 'line_total' => $product->get_price(),
-            // 'line_tax' => 0,
-        );
-    }
-
-    //echo "<pre>";
-    //print_r($cart_data);
-    //exit;
-    //$serialize_data = serialize($cart_data);
-    // $woocommerce->cart->add_to_cart( $pid );
-
-    update_user_meta($user,'_woocommerce_persistent_cart_1',$cart_data);
-
-    $carttot="";
-    // $carttot=count(WC()->cart->get_cart());
-    return $carttot;
-/************************************  ######TEST######  ********************** */
-
-/* View cart product api */
-//https://stackoverflow.com/questions/61941359/rest-api-to-store-products-in-cart-based-on-the-user-id-in-woocommerce
-//http://192.168.170.200:8034/wp-json/sz-auth/v1/woocomm_add_to_cart?user_id=3&products=[{product_id:26,quantity:5},{product_id:47,quantity:2}]
+// http://192.168.170.200:8034/wp-json/sz-auth/v1/woocomm_add_to_cart?user_id=3&products=[{product_id:26,quantity:5},{product_id:47,quantity:2}]
 add_action( 'rest_api_init', function () {
     register_rest_route( 'sz-auth/v1', 'woocomm_add_to_cart', array( //wp/v2
         'methods' => array('GET','POST'),
         'callback' => 'woocomm_add_to_cart',
     ) );
 } );
-
-function woocomm_add_to_cart($param) {
-
-    global $wpdb;
-    $user_id = $param['user_id'];
-    $objProduct = new WC_Session_Handler();
-
-    // echo "Params:  ";
-    // var_dump($param['user_id']);
-    $wc_session_data = $objProduct->get_session($user_id);
-    
-    // Get the persistent cart may be _woocommerce_persistent_cart can be in your case check in user_meta table
-    $full_user_meta = get_user_meta($user_id,'_woocommerce_persistent_cart_1',true);
-    
-    $cartObj = new WC_Cart();    // create new Cart Object
-    
-    // Add old cart data to newly created cart object
-    if($full_user_meta['cart']) {
-        foreach($full_user_meta['cart'] as $sinle_user_meta) {
-            $cartObj->add_to_cart( $sinle_user_meta['product_id'], $sinle_user_meta['quantity']  );
-        }
-    }
-    
-    // Add product and quantities coming in request to the new cart object
-    if($param['products']){
-        foreach($param['products'] as $prod) {
-            $cartObj->add_to_cart( $prod['product_id'], $prod['quantity']  );
-        }
-    }
-    
-    $updatedCart = [];
-    foreach($cartObj->cart_contents as $key => $val) {
-        unset($val['data']);
-        $updatedCart[$key] = $val;
-    }
-    
-    // If there is a current session cart, overwrite it with the new cart
-    if($wc_session_data) {
-        $wc_session_data['cart'] = serialize($updatedCart);
-        $serializedObj = maybe_serialize($wc_session_data);
-    
-    
-        $table_name = 'wp_woocommerce_sessions';
-    
-        // Update the wp_session table with updated cart data
-        $sql ="UPDATE $table_name SET 'session_value'= '".$serializedObj."', WHERE  'session_key' = '".$user_id."'";
-    
-        // Execute the query
-        $rez = $wpdb->query($sql);
-    }
-    
-    // Overwrite the persistent cart with the new cart data
-    $full_user_meta['cart'] = $updatedCart;
-    update_user_meta($user_id, '_woocommerce_persistent_cart_1', $full_user_meta);
-    
-    $response = [
-        'status' => true,
-        'message' => 'Products successfully added to cart'
-    ];
-    
-    return rest_ensure_response($response);
-    
-    
-    }	
-/************************************  ######TEST######  ********************** */
-function my_awesome_func($data)
-{
-    // $identifier = get_query_var( 'identifier' );
-    // return $identifier;
-    return "Deepa $$$$$$!";
-}
-
-add_action('rest_api_init', function () {
-    register_rest_route('sz-auth/v1', 'test', array(
-        'methods' => 'GET',
-        'callback' => 'my_awesome_func',
-        // 'permission_callback' => function ($request) {
-        //         if (current_user_can('edit_others_posts'))
-        //         return true;
-        //     }        
-    ));
-});
-
-
-function addtocarttocustomer($data)
-{
-    // $identifier = get_query_var( 'identifier' );
-    // return $identifier;
-
-    $pid=195;
-    $qty=25;
-
-    return "Deepa $$$$$$!";
-}
-
-add_action('rest_api_init', function () {
-    register_rest_route('sz-auth/v1', 'addtocart', array(
-        'methods' => 'GET',
-        'callback' => 'addtocarttocustomer',
-        // 'permission_callback' => function ($request) {
-        //         if (current_user_can('edit_others_posts'))
-        //         return true;
-        //     }        
-    ));
-});
-
-
-// add_action('rest_api_init', function () {
-//     register_rest_route('sz-auth/v1', 'foruser', array(
-//         'methods' => 'GET',
-//         'callback' => 'addtocart',
-//     ));
-// });
-
-// function addtocart() {
-//     defined( 'WC_ABSPATH' ) || exit;
-
-//     // Load cart functions which are loaded only on the front-end.
-//     include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
-//     include_once WC_ABSPATH . 'includes/class-wc-cart.php';
-
-//     if ( is_null( WC()->cart ) ) {
-//         wc_load_cart();
-//     }
-
-//     // I'm simply returning the cart item key. But you can return anything you want...
-//     return WC()->cart->add_to_cart(15);
-   
-// }
-
-
-/* Add to cart product api */
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'sz-auth/v1', 'add_to_cart_product', array( //wp/v2
-        'methods' => array('GET','POST'),
-        'callback' => 'add_to_cart_product',
-    ) );
-} );
-
-function add_to_cart_product(){
-    global $woocommerce,$wpdb;
-
-    wp_set_current_user($_POST['user_id']);
-    wp_set_auth_cookie($_POST['user_id']);
-
-    /* Required Parameters
-    $_POST['user_id']
-    $_POST['product_id'] */
-    $pid=221;
-    $qty=33;
-    $user=3;   
-
-
-    // $array = $wpdb->get_results("select meta_value from ".$wpdb->prefix."usermeta where meta_key='_woocommerce_persistent_cart_1' and user_id = ".$_POST['user_id']);
-    $array = $wpdb->get_results("select meta_value from ".$wpdb->prefix."usermeta where meta_key='_woocommerce_persistent_cart_1' and user_id = ".$user );   
-    $data =$array[0]->meta_value;
-    $cart_data=unserialize($data);
-
-    $flag = 0;
-    foreach($cart_data['cart'] as $key => $val) {
-        //$_product = $val['data'];
-        if($val['product_id'] != $pid){
-            $flag = 0;
-        }
-        elseif($val['product_id'] == $pid) {
-            $flag = 2;
-
-        }
-    }
-    if($flag == 2){
-        $cart_data['cart'][$key]['quantity']++;
-        $cart_data['cart'][$key]['quantity']++;
-    }
-    else{
-
-
-        $string = $woocommerce->cart->generate_cart_id( $pid, 0, array(), $cart_data['cart'] );
-        $product = wc_get_product( $pid );
-        $cart_data['cart'][$string] = array(
-            'key' => $string,
-            'product_id' =>$pid,
-            'variation_id' => 0,
-            'variation' => array(),
-            'quantity' => $qty,
-            'line_tax_data' => array(
-                'subtotal' => array(),
-                'total' => array()
-            ),
-            // 'line_subtotal' => $product->get_price(),
-            // 'line_subtotal_tax' => 0,
-            // 'line_total' => $product->get_price(),
-            // 'line_tax' => 0,
-        );
-    }
-
-    //echo "<pre>";
-    //print_r($cart_data);
-    //exit;
-    //$serialize_data = serialize($cart_data);
-    $woocommerce->cart->add_to_cart( $pid );
-
-    update_user_meta($user,'_woocommerce_persistent_cart_1',$cart_data);
-
-
-    return wc()->cart->get_cart(); // API response whatever you want
-}
-
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'sz-auth/v1', 'logintest', array( //wp/v2
-        'methods' => array('GET','POST'),
-        'callback' => function(WP_REST_Request $request) {
-            $nonce = wp_create_nonce("wp_rest");
-            $user = wp_signon(array(
-                'user_login' => $request['username'],
-                'user_password' => $request['password'],
-                "rememberme" => true),false);
-            if (is_wp_error($user)) {
-                return $request;
-            }
-            else{
-
-                return "$%$%$%$";
-            }
-            // //do_action( 'wp_login', "capad" );
-            // //$user['isloggedin'] = is_user_logged_in();
-            // return array('user' => $user, 'nonce' => $nonce);
-        }
-    ));
-});
-
-/* View cart product api */
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'sz-auth/v1', 'woocomm_add_to_cart', array( //wp/v2
-        'methods' => array('GET','POST'),
-        'callback' => 'woocomm_add_to_cart',
-    ) );
-} );
-
+ 
 function woocomm_add_to_cart($param) {
 
     global $woocommerce,$wpdb;
+    
+    // Load cart functions which are loaded only on the front-end.
+    include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
+    include_once WC_ABSPATH . 'includes/class-wc-cart.php';
+
+    if ( is_null( WC()->cart ) ) {
+        wc_load_cart();
+    }
+
+    // if ( is_null( WC()->customer ) || ! WC()->customer instanceof WC_Customer ) {
+    // 	$customer_id = strval( get_current_user_id() );
+
+    // 	WC()->customer = new WC_Customer( $customer_id, true );
+
+    // 	// Customer should be saved during shutdown.
+    // 	add_action( 'shutdown', array( WC()->customer, 'save' ), 10 );
+    // }
+
+    if ( is_null( WC()->cart ) || !  WC()->instance()->cart ) {
+        WC()->session = new WC_Session_Handler();
+        WC()->session->init();
+        WC()->customer = new WC_Customer( get_current_user_id(), true );
+        WC()->cart = new WC_Cart();
+    }
+
     $user_id = $param['user_id'];
     wp_set_current_user($user_id);
     wp_set_auth_cookie($user_id);
  
     $user = wp_get_current_user();
-    echo "User ID ##: ", $user;
 
     $objProduct = new WC_Session_Handler();
-
     $wc_session_data = $objProduct->get_session($user_id);
-
     $full_user_meta = get_user_meta($user_id,'_woocommerce_persistent_cart_1',true);    // Get the persistent cart may be _woocommerce_persistent_cart can be in your case check in user_meta table
-    // print_r($full_user_meta);
-
     $cartObj = new WC_Cart();    // create new Cart Object
     
-    // Add old cart data to newly created cart object
-    if($full_user_meta['cart']) {
-        foreach($full_user_meta['cart'] as $sinle_user_meta) {
-            $cartObj->add_to_cart( $sinle_user_meta['product_id'], $sinle_user_meta['quantity']  );
-        }
-    }
+    // if($full_user_meta['cart']) {                           // Add old cart data to newly created cart object
+    //         // echo "###0 : ";
+    //         // var_dump($full_user_meta['cart']);        
+    //     foreach($full_user_meta['cart'] as $sinle_user_meta) {
+    //         $cartObj->add_to_cart( $sinle_user_meta['product_id'], $sinle_user_meta['quantity']  );
+    //         echo "###1 : ";
+    //         var_dump($sinle_user_meta);
+    //     }
+    // }
 
-    // Add product and quantities coming in request to the new cart object
-    if($param['products']){
-        foreach($param['products'] as $prod) {
+    $products = json_decode($param['products'], true);
+
+    if($products){                               // Add product and quantities coming in request to the new cart object
+        foreach($products as $prod) {
             $cartObj->add_to_cart( $prod['product_id'], $prod['quantity']  );
-            var_dump($prod);
         }
     }
 
@@ -658,23 +355,16 @@ function woocomm_add_to_cart($param) {
         $updatedCart[$key] = $val;
     }
     
-    // If there is a current session cart, overwrite it with the new cart
-    if($wc_session_data) {
+    if($wc_session_data) {                                // If there is a current session cart, overwrite it with the new cart
         $wc_session_data['cart'] = serialize($updatedCart);
         $serializedObj = maybe_serialize($wc_session_data);
     
-    
         $table_name = 'wp_woocommerce_sessions';
-    
-        // Update the wp_session table with updated cart data
-        $sql ="UPDATE $table_name SET 'session_value'= '".$serializedObj."', WHERE  'session_key' = '".$user_id."'";
-    
-        // Execute the query
-        $rez = $wpdb->query($sql);
+        $sql ="UPDATE $table_name SET 'session_value'= '".$serializedObj."', WHERE  'session_key' = '".$user_id."'";        // Update the wp_session table with updated cart data
+        $rez = $wpdb->query($sql);                  // Execute the query
     }
-    
-    // Overwrite the persistent cart with the new cart data
-    $full_user_meta['cart'] = $updatedCart;
+
+    $full_user_meta['cart'] = $updatedCart;             // Overwrite the persistent cart with the new cart data
     update_user_meta($user_id, '_woocommerce_persistent_cart_1', $full_user_meta);
     
     $response = [
@@ -684,10 +374,61 @@ function woocomm_add_to_cart($param) {
     ];
     
     return rest_ensure_response($response);
-    
-    
+}
+  
+
+/*********************** Empty Cart ***********************/               
+
+// http://192.168.170.200:8034/wp-json/sz-auth/v1/empty_cart
+
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'sz-auth/v1', 'empty_cart', array(
+        'methods' => array('GET','POST'),
+        'callback' => 'woocommerce_clear_cart_url',
+    ) );
+} );
+
+function woocommerce_clear_cart_url($request) {
+
+    global $woocommerce, $wpdb;
+
+    // Load cart functions which are loaded only on the front-end.
+    include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
+    include_once WC_ABSPATH . 'includes/class-wc-cart.php';
+
+    if ( is_null( WC()->cart ) ) {
+        wc_load_cart();
     }
 
+    // if ( is_null( WC()->customer ) || ! WC()->customer instanceof WC_Customer ) {
+    // 	$customer_id = strval( get_current_user_id() );
 
-/*************** */
+    // 	WC()->customer = new WC_Customer( $customer_id, true );
+
+    // 	// Customer should be saved during shutdown.
+    // 	add_action( 'shutdown', array( WC()->customer, 'save' ), 10 );
+    // }
+
+    if ( is_null( WC()->cart ) || !  WC()->instance()->cart ) {
+        WC()->session = new WC_Session_Handler();
+        WC()->session->init();
+        WC()->customer = new WC_Customer( get_current_user_id(), true );
+        WC()->cart = new WC_Cart();
+    }
+    
+    $user=$request['user_id'];  
+
+    wp_set_current_user($user);
+    wp_set_auth_cookie($user);
+
+        WC()->cart->empty_cart(); 
+
+}
+
+
+
+/************************************  ######TEST######  ********************** */
+  
  
+/*************** */
+  
