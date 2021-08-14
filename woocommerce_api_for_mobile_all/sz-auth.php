@@ -429,6 +429,74 @@ function woocommerce_clear_cart_url($request) {
 
 /************************************  ######TEST######  ********************** */
   
- 
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'sz-auth/v1', 'checkout', array(
+        'methods' => array('GET','POST'),
+        'callback' => 'create_checkout_order',
+    ) );
+} );
+
+// add_action('woocommerce_checkout_process', 'create_vip_order');
+
+function create_checkout_order($request) {
+
+    global $woocommerce, $wpdb;
+
+    // Load cart functions which are loaded only on the front-end.
+    include_once WC_ABSPATH . 'includes/wc-cart-functions.php';
+    include_once WC_ABSPATH . 'includes/class-wc-cart.php';
+
+    if ( is_null( WC()->cart ) ) {
+        wc_load_cart();
+    }
+
+    // if ( is_null( WC()->customer ) || ! WC()->customer instanceof WC_Customer ) {
+    // 	$customer_id = strval( get_current_user_id() );
+
+    // 	WC()->customer = new WC_Customer( $customer_id, true );
+
+    // 	// Customer should be saved during shutdown.
+    // 	add_action( 'shutdown', array( WC()->customer, 'save' ), 10 );
+    // }
+
+    if ( is_null( WC()->cart ) || !  WC()->instance()->cart ) {
+        WC()->session = new WC_Session_Handler();
+        WC()->session->init();
+        WC()->customer = new WC_Customer( get_current_user_id(), true );
+        WC()->cart = new WC_Cart();
+    }
+    
+    $user=$request['user_id'];  
+    $product_id=$request['product_id'];  
+
+    wp_set_current_user($user);
+    wp_set_auth_cookie($user);
+
+  $address = array(
+      'first_name' => '111Joe',
+      'last_name'  => 'Conlin',
+      'company'    => 'Speed Society',
+      'email'      => 'joe@testing.com',
+      'phone'      => '760-555-1212',
+      'address_1'  => '123 Main st.',
+      'address_2'  => '104',
+      'city'       => 'San Diego',
+      'state'      => 'Ca',
+      'postcode'   => '92121',
+      'country'    => 'US'
+  );
+
+  // Now we create the order
+  $order = wc_create_order();
+
+  // The add_product() function below is located in /plugins/woocommerce/includes/abstracts/abstract_wc_order.php
+  $order->add_product( get_product($product_id), 1); // This is an existing SIMPLE product
+  $order->set_address( $address, 'billing' );
+  //
+  $order->calculate_totals();
+  $order->update_status("Completed", 'Imported order', TRUE);  
+}
+
 /*************** */
+  
   
