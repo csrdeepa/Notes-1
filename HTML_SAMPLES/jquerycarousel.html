@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Jquery carousel slider</title>
+  
+    <style>
+        section {
+            width: 40em;
+            height: 25em;
+            margin: 0 auto;
+            position: relative;
+        }
+        li {
+            width: 500px;
+            height: 281px; 
+            display: inline-block;
+            -webkit-transition: all .3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+            overflow: hidden;
+        }
+        li p {
+            color: white;
+            font-weight: bold;
+            font-size: 5em;
+            text-align: center;
+            margin-top: 1.175em;
+        }
+        .items {
+            position: absolute;
+        }
+        .items {
+            box-shadow: 1px -1px 8px 3px #c9c9c9;
+            -webkit-box-shadow: 1px -1px 8px 3px #c9c9c9;
+            -moz-box-shadow: 1px -1px 8px 3px #c9c9c9;
+        }
+        .items img {
+            width: 100%;
+        }
+        .main-pos {
+            margin-left: 2em !important;
+            z-index: 3000;
+            /*background-image: url('https://dl.dropbox.com/u/32649907/imgs/shadow.png');*/
+        }
+        .left-pos {
+            opacity: .3;
+            margin-left: -17em !important;
+            z-index: 1000;
+            -webkit-transform: scale(.75);
+            -moz-transform: scale(.75);
+            transform: scale(.75);
+        }
+        .back-pos {
+            margin-left: 2em !important;
+            opacity: .05;
+            -webkit-transform: scale(.5);
+            -moz-transform: scale(.5);
+            transform: scale(.5);
+        }
+        .right-pos {
+            opacity: .3;
+            margin-left:  21em !important;
+            z-index: 1000;
+            -webkit-transform: scale(.75);
+            -moz-transform: scale(.75);
+            transform: scale(.75);
+        }
+        span {
+            position: relative;
+            margin: 0 auto;
+            left: 17em;
+            top: 20em;
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+
+<body translate="no" >
+    <section>
+        <ul class="carousel">
+            <li class="items main-pos" id="1"> <img src="https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg" /> </li>
+            <li class="items right-pos" id="2"> <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" /> </li>
+            <li class="items back-pos" id="3"> <img src="https://cdn.pixabay.com/photo/2017/02/08/17/24/fantasy-2049567__480.jpg"/> </li>
+            <li class="items back-pos" id="4"> <img src="https://thypix.com/wp-content/uploads/2018/05/Sommerlandschaft-Bilder-1.jpg" /> </li> 
+            <li class="items back-pos" id="5"> <img src="https://static.toiimg.com/thumb/msid-58475411,width-748,height-499,resizemode=4,imgsize-142947/.jpg" /> </li>
+            <li class="items back-pos" id="6"> <img src="https://www.technipages.com/wp-content/uploads/2019/07/Cover-600x371.jpg" /> </li>
+            <li class="items left-pos" id="7"> <img src="https://cdn.wallpapersafari.com/71/91/THDmVU.jpg"/> </li>
+        </ul> 
+    </section>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script id="rendered-js" >
+    //slideshow style interval
+    var autoSwap = setInterval(swap, 6000);
+
+    //pause slideshow and reinstantiate on mouseout
+    $('ul, span').hover(
+        function () {
+            clearInterval(autoSwap);
+        },
+        function () {
+            autoSwap = setInterval(swap, 6000);
+        }
+    );
+
+    //global variables
+    var items = [];
+    var startItem = 1;
+    var position = 0;
+    var itemCount = $('.carousel li.items').length;
+    var leftpos = itemCount;
+    var resetCount = itemCount;
+
+    //unused: gather text inside items class
+    $('li.items').each(function (index) {
+        items[index] = $(this).text();
+    });
+
+    //swap images function
+    function swap(action) {
+        var direction = action;
+
+        //moving carousel backwards
+        if (direction == 'counter-clockwise') {
+            var leftitem = $('.left-pos').attr('id') - 1;
+            if (leftitem == 0) {
+            leftitem = itemCount;
+            }
+
+            $('.right-pos').removeClass('right-pos').addClass('back-pos');
+            $('.main-pos').removeClass('main-pos').addClass('right-pos');
+            $('.left-pos').removeClass('left-pos').addClass('main-pos');
+            $('#' + leftitem + '').removeClass('back-pos').addClass('left-pos');
+
+            startItem--;
+            if (startItem < 1) {
+            startItem = itemCount;
+            }
+        }
+
+        //moving carousel forward
+        if (direction == 'clockwise' || direction == '' || direction == null) {
+            function pos(positionvalue) {
+            if (positionvalue != 'leftposition') {
+                position++;                //increment image list id
+
+                if (startItem + position > resetCount) {                //if final result is greater than image count, reset position.
+                    position = 1 - startItem;
+                }
+            }
+
+            //setting the left positioned item
+            if (positionvalue == 'leftposition') {
+                position = startItem - 1;          //left positioned image should always be one left than main positioned image.
+                if (position < 1) {                //reset last image in list to left position if first image is in main position
+                    position = itemCount;
+                }
+            }
+
+            return position;
+            }
+
+            $('#' + startItem + '').removeClass('main-pos').addClass('left-pos');
+            $('#' + (startItem + pos()) + '').removeClass('right-pos').addClass('main-pos');
+            $('#' + (startItem + pos()) + '').removeClass('back-pos').addClass('right-pos');
+            $('#' + pos('leftposition') + '').removeClass('left-pos').addClass('back-pos');
+
+            startItem++;
+            position = 0;
+            if (startItem > itemCount) {
+                startItem = 1;
+            }
+        }
+    }
+
+    //next button click function
+    $('#next').click(function () {
+        swap('clockwise');
+    });
+
+    //prev button click function
+    $('#prev').click(function () {
+        swap('counter-clockwise');
+    });
+
+    //if any visible items are clicked
+    $('li').click(function () {
+    if ($(this).attr('class') == 'items left-pos') {
+        swap('counter-clockwise');
+    } else
+    {
+        swap('clockwise');
+    }
+    });
+
+    </script>
+</body>
+</html>
