@@ -1,5 +1,9 @@
 /***** Header *****/
 jQuery( document ).ready(function() {
+	jQuery('.menu_accessibility a').after(jQuery('.pojo-a11y-toolbar-inner').html());
+});
+
+jQuery( document ).ready(function() {
 	jQuery('#cslider .et_pb_module').addClass('back-pos');
 	
 	var i = jQuery('#cslider .et_pb_module').length;
