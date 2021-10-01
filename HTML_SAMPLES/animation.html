@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+    <title>CodePen - Pizza example (animated images)</title>
+    <link rel='stylesheet' href='https://cssanimation.rocks/levelup/public/03/02-end/stylesheets/main.css'>
+  
+<style>
+    .inline-photo {
+    border: 1em solid #fff;
+    border-bottom: 4em solid #fff;
+    border-radius: .25em;
+    box-shadow: 1em 1em 2em .25em rgba(0,0,0,.2);
+    margin: 2em auto;
+    opacity: 0;
+    transform: translateY(4em) rotateZ(-5deg);
+    transition: transform 4s .25s cubic-bezier(0,1,.3,1), opacity .3s .25s ease-out;
+    max-width: 600px;
+    width: 90%;
+    will-change: transform, opacity;
+    }
+
+    .inline-photo.is-visible {
+    opacity: 1;
+    transform: rotateZ(0deg);
+    }
+
+    header {
+    opacity: 0;
+    transition: opacity .5s .25s ease-out;
+    }
+
+    header.is-visible {
+    opacity: 1;
+    }
+
+    .main-photo {
+    transform: scale(.8);
+    }
+
+    .heading {
+    transform: translate(-50%, calc(-50% + 1em));
+    }
+
+    .is-visible .main-photo {
+    transform: none;
+    }
+
+    .is-visible .heading {
+    transform: translate(-50%, -50%);
+    }
+
+    .main-photo,
+    .heading {
+    transition: transform 4s .25s cubic-bezier(0,1,.3,1),
+                filter 10s 2s ease-out;
+    will-change: transform;
+    }
+</style>
+
+<script>
+  window.console = window.console || function(t) {};
+</script>
+
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no" >
+    <header class="header show-on-scroll">
+        <div class="main-photo"></div>
+        <h1 class="heading">When the moon hits your eye</h1>
+    </header>
+    <article class="content">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza2.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza_spin.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza_oven.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza3.jpg" class="inline-photo show-on-scroll">
+
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza2.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza_spin.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza_oven.jpg" class="inline-photo show-on-scroll">
+        <img src="https://cssanimation.rocks/levelup/public/03/02-end/images/pizza3.jpg" class="inline-photo show-on-scroll">
+    </article>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  
+<script id="rendered-js" >
+    // Detect request animation frame
+    var scroll = window.requestAnimationFrame ||
+    // IE Fallback
+    function (callback) {window.setTimeout(callback, 1000 / 60);};
+    var elementsToShow = document.querySelectorAll('.show-on-scroll');
+
+    function loop() {
+
+        Array.prototype.forEach.call(elementsToShow, function (element) {
+            if (isElementInViewport(element)) {
+            element.classList.add('is-visible');
+            } else {
+            element.classList.remove('is-visible');
+            }
+        });
+
+        scroll(loop);
+    }
+
+    // Call the loop for the first time
+    loop();
+
+    // Helper function from: http://stackoverflow.com/a/7557433/274826
+    function isElementInViewport(el) {
+        // special bonus for those using jQuery
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top <= 0 &&
+            rect.bottom >= 0 ||
+
+            rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) ||
+
+            rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+    }
+    //# sourceURL=pen.js
+</script>
+</body>
+</html>
