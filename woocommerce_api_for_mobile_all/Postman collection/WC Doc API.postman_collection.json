@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "ff6287b6-4107-436e-8e2a-20ace50512bc",
+		"name": "WC Doc API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Products",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "consumerSecret",
+							"value": "cs_86e0b8aff3dc3d9e3c46a299f980d0f592937fad",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "ck_1ee0e1e5905760da5cd7c16d1644d9427ca16e2c",
+							"type": "string"
+						},
+						{
+							"key": "callback",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/products?per_page=50",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"products"
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "50"
+						},
+						{
+							"key": "catalog_visibility",
+							"value": "visible",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wp-json/wc/v3/customers/3",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "callback",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "consumerKey",
+							"value": "ck_6e5c3923235ecc74b5e5e3c3400a4741bc07b34c",
+							"type": "string"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "cs_69c2c015a7decc4a65e9d4d01de0e7346e36c09f",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/customers/3",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"customers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wp-json/wc/v3/customers/3",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "callback",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "consumerKey",
+							"value": "ck_6e5c3923235ecc74b5e5e3c3400a4741bc07b34c",
+							"type": "string"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "cs_69c2c015a7decc4a65e9d4d01de0e7346e36c09f",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/customers/3",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"customers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wc-api/v3/customers/email/osoftzwp@gmail.com",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "tokenSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "cs_86e0b8aff3dc3d9e3c46a299f980d0f592937fad",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "ck_1ee0e1e5905760da5cd7c16d1644d9427ca16e2c",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.170.200:8034/wc-api/v3/customers/email/osoftzwp@gmail.com",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wc-api",
+						"v3",
+						"customers",
+						"email",
+						"osoftzwp@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wp-json/wc/v3/system_status",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response=pm.response.json();\r",
+							"pm.globals.set(\"jwt_token\", response.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "tokenSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "cs_86e0b8aff3dc3d9e3c46a299f980d0f592937fad",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "ck_1ee0e1e5905760da5cd7c16d1644d9427ca16e2c",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTIuMTY4LjE3MC4yMDA6ODAzNCIsImlhdCI6MTYzMjgxNTg5OCwibmJmIjoxNjMyODE1ODk4LCJleHAiOjE2MzM0MjA2OTgsImRhdGEiOnsidXNlciI6eyJpZCI6IjIifX19.LMWwTfqAMtaISFgFZP672ydb5a7OxL5SY4EILtZNPZg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "osoftz",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin@123",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "osoftzwp@gmail.com",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/system_status",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"system_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wp-json/wc/v3/orders/?customer_id=3",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "consumerSecret",
+							"value": "{{Consumer Secret}}",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "{{Consumer Key}}",
+							"type": "string"
+						},
+						{
+							"key": "callback",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"payment_method\": \"ppcp-gateway\",\r\n  \"payment_method_title\": \"PayPal\",\r\n  \"set_paid\": true,\r\n  \"billing\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"address_1\": \"969 Market\",\r\n    \"address_2\": \"\",\r\n    \"city\": \"San Francisco\",\r\n    \"state\": \"CA\",\r\n    \"postcode\": \"94103\",\r\n    \"country\": \"US\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"phone\": \"(555) 555-5555\"\r\n  },\r\n  \"shipping\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"address_1\": \"969 Market\",\r\n    \"address_2\": \"\",\r\n    \"city\": \"San Francisco\",\r\n    \"state\": \"CA\",\r\n    \"postcode\": \"94103\",\r\n    \"country\": \"US\"\r\n  },\r\n  \"line_items\": [\r\n    {\r\n      \"product_id\": 14,\r\n      \"quantity\": 2\r\n    },\r\n    {\r\n      \"product_id\": 15,\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"shipping_lines\": [\r\n    {\r\n      \"method_id\": \"flat_rate\",\r\n      \"method_title\": \"Flat Rate\",\r\n      \"total\": \"10.00\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/orders/?customer_id=3",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"orders",
+						""
+					],
+					"query": [
+						{
+							"key": "customer_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.170.200:8034/wp-json/wc/v3/payment_gateways",
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "consumerSecret",
+							"value": "{{Consumer Secret}}",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "{{Consumer Key}}",
+							"type": "string"
+						},
+						{
+							"key": "callback",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "includeBodyHash",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.170.200:8034/wp-json/wc/v3/payment_gateways",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"170",
+						"200"
+					],
+					"port": "8034",
+					"path": [
+						"wp-json",
+						"wc",
+						"v3",
+						"payment_gateways"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
