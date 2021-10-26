@@ -1,0 +1,44 @@
+{
+	"id": "e255a4f5-c738-45e6-818f-9a1bddf1fd8e",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "http://192.168.170.200:8034",
+			"enabled": true
+		},
+		{
+			"key": "api_version",
+			"value": "v2",
+			"enabled": true
+		},
+		{
+			"key": "osoftz",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTIuMTY4LjE3MC4yMDA6ODAzNCIsImlhdCI6MTYzNTE2NjE4NywibmJmIjoxNjM1MTY2MTg3LCJleHAiOjE2MzU3NzA5ODcsImRhdGEiOnsidXNlciI6eyJpZCI6IjIifX19.Eq382DN4kokkWBafurxjXCEeqmWPT7GvEuwRABm5KIo",
+			"enabled": true
+		},
+		{
+			"key": "test",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xOTIuMTY4LjE3MC4yMDA6ODAzNCIsImlhdCI6MTYzNDU0OTE2NCwibmJmIjoxNjM0NTQ5MTY0LCJleHAiOjE2MzUxNTM5NjQsImRhdGEiOnsidXNlciI6eyJpZCI6IjMifX19.qG3Ls1UksLSMnCMbnr-j9r05MxCBmF1aFie8gzR9flI",
+			"enabled": true
+		},
+		{
+			"key": "Consumer Key",
+			"value": "ck_e493760caeda9566833409460d25db1f0defd2c6",
+			"enabled": true
+		},
+		{
+			"key": "Consumer Secret",
+			"value": "cs_5f579ab9dc07b3c8c3912050078e5193d86d9563",
+			"enabled": true
+		},
+		{
+			"key": "AUTH_KEY",
+			"value": "abc121212",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2021-10-26T12:49:37.894Z",
+	"_postman_exported_using": "Postman/9.1.1"
+}
