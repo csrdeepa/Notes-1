@@ -1,3 +1,4 @@
+
 [
     // External Product with external_url, button_text
     {
@@ -161,7 +162,7 @@
         "shipping_class": "",
         "shipping_class_id": 0,
         "reviews_allowed": true,
-        "average_rating": "0.00",
+        "average_rating": "5.00",
         "rating_count": 0,
         "upsell_ids": [],
         "cross_sell_ids": [],
@@ -1511,7 +1512,7 @@
         "shipping_class": "",
         "shipping_class_id": 0,
         "reviews_allowed": true,
-        "average_rating": "0.00",
+        "average_rating": "3.00",
         "rating_count": 0,
         "upsell_ids": [],
         "cross_sell_ids": [],
@@ -2175,7 +2176,7 @@
         "shipping_class": "",
         "shipping_class_id": 0,
         "reviews_allowed": true,
-        "average_rating": "0.00",
+        "average_rating": "2.00",
         "rating_count": 0,
         "upsell_ids": [],
         "cross_sell_ids": [],
@@ -2284,3 +2285,1042 @@
         }
     }
 ]
+
+
+
+// Get store information.
+// Add simple, variable and grouped products to the cart.
+// Get customers cart.
+// Get customers cart contents.
+// Update items in the cart.
+// Remove items from the cart.
+// Restore items to the cart.
+// Re-calculate the totals.
+// Retrieve the cart totals.
+// Retrieve the number of items in cart or items removed from it.
+// Empty the cart.
+// Login the customer/user.
+// Logout the customer/user.
+
+
+// /****/
+// Get Carts in Session.
+// Get details of a cart in session.
+// View items added in a cart in session.
+// Delete a Cart in Session.
+
+// /****/Pro
+// Add and Remove Coupons to Cart
+// Retrieve Applied Coupons
+// Retrieve Coupon Discount Total
+// Retrieve Cart Total Weight
+// Retrieve Cross Sells
+// Retrieve and Set Payment Method
+// Retrieve and Set Shipping Methods
+// Retrieve and Set Fees
+// Calculate Shipping Fees
+// Calculate Totals and Fees
+
+
+ 
+
+    {
+        "id": 129,
+        "name": "Test product",
+        "slug": "test-product",
+        "permalink": "http://192.168.170.200:8034/product/test-product/",
+        "date_created": "2021-10-27T07:53:12",
+        "date_created_gmt": "2021-10-27T07:53:12",
+        "date_modified": "2021-10-27T09:01:53",
+        "date_modified_gmt": "2021-10-27T09:01:53",
+        "type": "simple",                   // external, grouped, simple, variable  // Add to cart based on type
+        "status": "publish",                // publish
+        "featured": false,                  // list in featured products
+        "catalog_visibility": "visible",    // visible, hidden, search, catalog // This setting determines which shop pages products will be listed on. 
+        "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+        "short_description": "<p>This is a simple product.</p>\n",
+        "sku": "Woo-beanie-logo-1",
+
+        "price": "20",  // 
+        "regular_price": "20",
+        "sale_price": "18",
+
+        "date_on_sale_from": "2021-10-11T00:00:00",         // For simple product
+        "date_on_sale_from_gmt": "2021-10-11T00:00:00",     // For simple product
+        "date_on_sale_to": "2021-10-20T23:59:59",           // For simple product
+        "date_on_sale_to_gmt": "2021-10-20T23:59:59",       // For simple product
+        "on_sale": false,               // For simple product // true if data on sale is null
+
+        "purchasable": true,            // true (simple, variable), false(external, grouped)
+        "total_sales": 0,
+
+        "virtual": false,               //might be simple or virtual  //There is no shipping for virtual
+        "downloadable": true,           // might be simple or virtual 
+        "downloads": [
+            {
+                "id": "4e3d5e5f-0300-4102-94ad-0e36c0e6e753",
+                "name": "AGENCY-PaymentReciept1180212063720211027121254654-fqja9k.pdf",
+                "file": "http://192.168.170.200:8034/wp-content/uploads/woocommerce_uploads/2021/10/AGENCY-PaymentReciept1180212063720211027121254654-fqja9k.pdf"
+            },
+            {
+                "id": "242cf242-f4ef-4f37-bd85-72ed244d9a38",
+                "name": "SWTM-2088_Atlassian-Git-Cheatsheet-dejkr7.pdf",
+                "file": "http://192.168.170.200:8034/wp-content/uploads/woocommerce_uploads/2021/10/SWTM-2088_Atlassian-Git-Cheatsheet-dejkr7.pdf"
+            }
+        ],
+        "download_limit": 3,
+        "download_expiry": 7,
+
+        "external_url": "",         // if product type is external
+
+        "button_text": "",          // if Null Show Add to cart else actual text
+
+        "tax_status": "taxable",
+        "tax_class": "",
+
+        "manage_stock": true,       // Stock quantity. If this is a variable product this value will be used to control stock for all variations, unless you define stock at variation level.
+        "stock_quantity": 33,
+        "backorders": "yes",        // no, yes, notify  // If managing stock, this controls whether or not backorders are allowed. If enabled, stock quantity can go below 0.
+        "backorders_allowed": true, // if backorders no this would be false
+        "backordered": false,       // 
+        "low_stock_amount": 10,     // When product stock reaches this amount you will be notified by email. It is possible to define different values for each variation individually. The shop default value can be set in Settings > Products > Inventory.
+
+        "sold_individually": true,  //Enable this to only allow one of this item to be bought in a single order
+
+        "weight": "",
+        "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+        },
+
+        "shipping_required": true, // except virtual products
+        "shipping_taxable": true,
+        "shipping_class": "",
+        "shipping_class_id": 0,
+
+        "reviews_allowed": true,
+        "average_rating": "4.00",
+        "rating_count": 1,
+
+        "upsell_ids": [],
+        "cross_sell_ids": [],
+
+        "parent_id": 0,
+
+        "purchase_note": "<p>test purchase note</p>\n",
+
+        "categories": [
+            {
+                "id": 19,
+                "name": "Accessories",
+                "slug": "accessories"
+            },
+            {
+                "id": 16,
+                "name": "Clothing",
+                "slug": "clothing"
+            }
+        ],
+
+        "tags": [
+            {
+                "id": 32,
+                "name": "blue",
+                "slug": "blue"
+            },
+            {
+                "id": 31,
+                "name": "cap",
+                "slug": "cap"
+            }
+        ],
+
+        "images": [
+            {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            {
+                "id": 38,
+                "date_created": "2021-08-25T11:56:54",
+                "date_created_gmt": "2021-08-25T11:56:54",
+                "date_modified": "2021-08-25T11:56:54",
+                "date_modified_gmt": "2021-08-25T11:56:54",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/vneck-tee-2.jpg",
+                "name": "vneck-tee-2.jpg",
+                "alt": ""
+            },
+            {
+                "id": 45,
+                "date_created": "2021-08-25T11:57:09",
+                "date_created_gmt": "2021-08-25T11:57:09",
+                "date_modified": "2021-08-25T11:57:09",
+                "date_modified_gmt": "2021-08-25T11:57:09",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/tshirt-2.jpg",
+                "name": "tshirt-2.jpg",
+                "alt": ""
+            },
+            {
+                "id": 54,
+                "date_created": "2021-08-25T11:57:33",
+                "date_created_gmt": "2021-08-25T11:57:33",
+                "date_modified": "2021-08-25T11:57:33",
+                "date_modified_gmt": "2021-08-25T11:57:33",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/album-1.jpg",
+                "name": "album-1.jpg",
+                "alt": ""
+            },
+            {
+                "id": 55,
+                "date_created": "2021-08-25T11:57:35",
+                "date_created_gmt": "2021-08-25T11:57:35",
+                "date_modified": "2021-08-25T11:57:35",
+                "date_modified_gmt": "2021-08-25T11:57:35",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/single-1.jpg",
+                "name": "single-1.jpg",
+                "alt": ""
+            },
+            {
+                "id": 53,
+                "date_created": "2021-08-25T11:57:30",
+                "date_created_gmt": "2021-08-25T11:57:30",
+                "date_modified": "2021-08-25T11:57:30",
+                "date_modified_gmt": "2021-08-25T11:57:30",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/polo-2.jpg",
+                "name": "polo-2.jpg",
+                "alt": ""
+            }
+        ],
+
+        "attributes": [       // For Variable Products only
+            {
+                "id": 1,
+                "name": "Color",
+                "position": 0,
+                "visible": true,
+                "variation": true,
+                "options": [
+                    "Blue",
+                    "Red",
+                    "Yellow"
+                ]
+            },
+            {
+                "id": 0,
+                "name": "Pattern",
+                "position": 1,
+                "visible": true,
+                "variation": true,
+                "options": [
+                    "With logo",
+                    "Without log",
+                    "Half transparent logo"
+                ]
+            }
+        ],
+
+        "default_attributes": [        // For Variable Products only
+            {
+                "id": 1,
+                "name": "Color",
+                "option": "blue"
+            },
+            {
+                "id": 0,
+                "name": "Pattern",
+                "option": "With logo"
+            }
+        ],
+
+        "variations": [ 130, 131, 132, 139, 140, 141, 142, 143, 144 ],       // For Variable Products only
+
+        "grouped_products": [16,17,18],        // For Grouped Products only
+
+        "menu_order": 5,
+
+        "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>20.00</bdi></span>",
+
+        "related_ids": [ 18, 34, 17, 20, 35 ],
+
+        "meta_data": [
+            {
+                "id": 2015,
+                "key": "_wpcom_is_markdown",
+                "value": "1"
+            }
+        ],
+
+        "stock_status": "instock",
+        "_links": {
+            "self": [
+                {
+                    "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "http://192.168.170.200:8034/wp-json/wc/v3/products"
+                }
+            ]
+        }
+    }
+
+     
+
+    //  Get variations by product ID
+    [
+        {
+            "id": 156,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T11:00:38",
+            "date_modified_gmt": "2021-10-27T11:00:38",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=yellow&attribute_pattern=Half+transparent+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "56",
+            "regular_price": "56",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Yellow"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Half transparent logo"
+                }
+            ],
+            "menu_order": 8,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/156"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 155,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T11:00:38",
+            "date_modified_gmt": "2021-10-27T11:00:38",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=yellow&attribute_pattern=Without+log",
+            "sku": "Woo-beanie-logo-1",
+            "price": "32",
+            "regular_price": "32",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Yellow"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Without log"
+                }
+            ],
+            "menu_order": 7,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/155"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 154,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T11:00:37",
+            "date_modified_gmt": "2021-10-27T11:00:37",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=yellow&attribute_pattern=With+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "67",
+            "regular_price": "67",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Yellow"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "With logo"
+                }
+            ],
+            "menu_order": 6,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/154"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 153,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T11:00:37",
+            "date_modified_gmt": "2021-10-27T11:00:37",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=red&attribute_pattern=Half+transparent+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "89",
+            "regular_price": "89",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Red"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Half transparent logo"
+                }
+            ],
+            "menu_order": 5,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/153"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 152,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T11:00:37",
+            "date_modified_gmt": "2021-10-27T11:00:37",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=red&attribute_pattern=Without+log",
+            "sku": "Woo-beanie-logo-1",
+            "price": "63",
+            "regular_price": "63",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Red"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Without log"
+                }
+            ],
+            "menu_order": 4,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/152"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 151,
+            "date_created": "2021-10-27T10:35:35",
+            "date_created_gmt": "2021-10-27T10:35:35",
+            "date_modified": "2021-10-27T10:57:27",
+            "date_modified_gmt": "2021-10-27T10:57:27",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=red&attribute_pattern=With+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "85",
+            "regular_price": "85",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Red"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "With logo"
+                }
+            ],
+            "menu_order": 3,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/151"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 150,
+            "date_created": "2021-10-27T10:35:34",
+            "date_created_gmt": "2021-10-27T10:35:34",
+            "date_modified": "2021-10-27T10:57:27",
+            "date_modified_gmt": "2021-10-27T10:57:27",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=blue&attribute_pattern=Half+transparent+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "",
+            "regular_price": "",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "private",
+            "purchasable": false,
+            "virtual": false,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Blue"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Half transparent logo"
+                }
+            ],
+            "menu_order": 3,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/150"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 149,
+            "date_created": "2021-10-27T10:35:34",
+            "date_created_gmt": "2021-10-27T10:35:34",
+            "date_modified": "2021-10-27T10:57:27",
+            "date_modified_gmt": "2021-10-27T10:57:27",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=blue&attribute_pattern=Without+log",
+            "sku": "Woo-beanie-logo-1",
+            "price": "20",
+            "regular_price": "25",
+            "sale_price": "20",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": true,
+            "status": "publish",
+            "purchasable": true,
+            "virtual": true,
+            "downloadable": false,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": "parent",
+            "stock_quantity": 20,
+            "stock_status": "instock",
+            "backorders": "yes",
+            "backorders_allowed": true,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Blue"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "Without log"
+                }
+            ],
+            "menu_order": 2,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/149"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 148,
+            "date_created": "2021-10-27T10:35:34",
+            "date_created_gmt": "2021-10-27T10:35:34",
+            "date_modified": "2021-10-27T10:57:27",
+            "date_modified_gmt": "2021-10-27T10:57:27",
+            "description": "",
+            "permalink": "http://192.168.170.200:8034/product/test-product/?attribute_pa_color=blue&attribute_pattern=With+logo",
+            "sku": "Woo-beanie-logo-1",
+            "price": "",
+            "regular_price": "",
+            "sale_price": "",
+            "date_on_sale_from": null,
+            "date_on_sale_from_gmt": null,
+            "date_on_sale_to": null,
+            "date_on_sale_to_gmt": null,
+            "on_sale": false,
+            "status": "publish",
+            "purchasable": false,
+            "virtual": false,
+            "downloadable": true,
+            "downloads": [],
+            "download_limit": -1,
+            "download_expiry": -1,
+            "tax_status": "taxable",
+            "tax_class": "",
+            "manage_stock": true,
+            "stock_quantity": 21,
+            "stock_status": "instock",
+            "backorders": "no",
+            "backorders_allowed": false,
+            "backordered": false,
+            "low_stock_amount": null,
+            "weight": "",
+            "dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+            },
+            "shipping_class": "",
+            "shipping_class_id": 0,
+            "image": {
+                "id": 57,
+                "date_created": "2021-08-25T11:57:43",
+                "date_created_gmt": "2021-08-25T11:57:43",
+                "date_modified": "2021-08-25T11:57:43",
+                "date_modified_gmt": "2021-08-25T11:57:43",
+                "src": "http://192.168.170.200:8034/wp-content/uploads/2021/08/beanie-with-logo-1.jpg",
+                "name": "beanie-with-logo-1.jpg",
+                "alt": ""
+            },
+            "attributes": [
+                {
+                    "id": 1,
+                    "name": "Color",
+                    "option": "Blue"
+                },
+                {
+                    "id": 0,
+                    "name": "Pattern",
+                    "option": "With logo"
+                }
+            ],
+            "menu_order": 1,
+            "meta_data": [],
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations/148"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129/variations"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://192.168.170.200:8034/wp-json/wc/v3/products/129"
+                    }
+                ]
+            }
+        }
+    ]
