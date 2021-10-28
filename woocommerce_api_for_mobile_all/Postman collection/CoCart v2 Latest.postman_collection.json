@@ -1376,80 +1376,10 @@
 			"name": "WC Doc Api",
 			"item": [
 				{
-					"name": "General",
-					"item": [
-						{
-							"name": "System status details",
-							"request": {
-								"auth": {
-									"type": "oauth1",
-									"oauth1": [
-										{
-											"key": "consumerSecret",
-											"value": "{{Consumer Secret}}",
-											"type": "string"
-										},
-										{
-											"key": "consumerKey",
-											"value": "{{Consumer Key}}",
-											"type": "string"
-										},
-										{
-											"key": "addParamsToHeader",
-											"value": false,
-											"type": "boolean"
-										},
-										{
-											"key": "callback",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "signatureMethod",
-											"value": "HMAC-SHA256",
-											"type": "string"
-										},
-										{
-											"key": "includeBodyHash",
-											"value": false,
-											"type": "boolean"
-										},
-										{
-											"key": "addEmptyParamsToSign",
-											"value": false,
-											"type": "boolean"
-										},
-										{
-											"key": "version",
-											"value": "1.0",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/wp-json/wc/v3/system_status",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"wp-json",
-										"wc",
-										"v3",
-										"system_status"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "User",
 					"item": [
 						{
-							"name": "List all Customers",
+							"name": "Create a customer",
 							"request": {
 								"auth": {
 									"type": "oauth1",
@@ -1496,8 +1426,17 @@
 										}
 									]
 								},
-								"method": "GET",
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"test7use@gmail.com\",\r\n  \"first_name\": \"John\",\r\n  \"last_name\": \"Doe\",\r\n  \"username\": \"john.doe\",\r\n  \"billing\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"company\": \"\",\r\n    \"address_1\": \"969 Market\",\r\n    \"address_2\": \"\",\r\n    \"city\": \"San Francisco\",\r\n    \"state\": \"CA\",\r\n    \"postcode\": \"94103\",\r\n    \"country\": \"US\",\r\n    \"email\": \"test7use@gmail.comcom\",\r\n    \"phone\": \"(555) 555-5555\"\r\n  },\r\n  \"shipping\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"company\": \"\",\r\n    \"address_1\": \"969 Market\",\r\n    \"address_2\": \"\",\r\n    \"city\": \"San Francisco\",\r\n    \"state\": \"CA\",\r\n    \"postcode\": \"94103\",\r\n    \"country\": \"US\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{base_url}}/wp-json/wc/v3/customers",
 									"host": [
@@ -1514,7 +1453,7 @@
 							"response": []
 						},
 						{
-							"name": "Get user by ID",
+							"name": "Get customer by ID",
 							"request": {
 								"auth": {
 									"type": "oauth1",
@@ -1712,6 +1651,360 @@
 										"customers",
 										"email",
 										"osoftzwp@gmail.com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all Customers",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/customers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a customer",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"first_name\": \"James\",\r\n  \"billing\": {\r\n    \"first_name\": \"James\"\r\n  },\r\n  \"shipping\": {\r\n    \"first_name\": \"James\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/customers/5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"customers",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a customer",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/customers/5?force=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"customers",
+										"5"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batch update customers",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"create\": [\r\n    {\r\n      \"email\": \"john.doe2@example.com\",\r\n      \"first_name\": \"John\",\r\n      \"last_name\": \"Doe\",\r\n      \"username\": \"john.doe2\",\r\n      \"billing\": {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"company\": \"\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"phone\": \"(555) 555-5555\"\r\n      },\r\n      \"shipping\": {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"company\": \"\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\"\r\n      }\r\n    },\r\n    {\r\n      \"email\": \"joao.silva2@example.com\",\r\n      \"first_name\": \"João\",\r\n      \"last_name\": \"Silva\",\r\n      \"username\": \"joao.silva2\",\r\n      \"billing\": {\r\n        \"first_name\": \"João\",\r\n        \"last_name\": \"Silva\",\r\n        \"company\": \"\",\r\n        \"address_1\": \"Av. Brasil, 432\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"Rio de Janeiro\",\r\n        \"state\": \"RJ\",\r\n        \"postcode\": \"12345-000\",\r\n        \"country\": \"BR\",\r\n        \"email\": \"joao.silva@example.com\",\r\n        \"phone\": \"(55) 5555-5555\"\r\n      },\r\n      \"shipping\": {\r\n        \"first_name\": \"João\",\r\n        \"last_name\": \"Silva\",\r\n        \"company\": \"\",\r\n        \"address_1\": \"Av. Brasil, 432\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"Rio de Janeiro\",\r\n        \"state\": \"RJ\",\r\n        \"postcode\": \"12345-000\",\r\n        \"country\": \"BR\"\r\n      }\r\n    }\r\n  ],\r\n  \"update\": [\r\n    {\r\n      \"id\": 6,\r\n      \"billing\": {\r\n        \"phone\": \"(11) 1111-1111\"\r\n      }\r\n    }\r\n  ],\r\n  \"delete\": [\r\n    7\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/customers/batch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"customers",
+										"batch"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve customer downloads",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/customers/2/downloads",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"customers",
+										"2",
+										"downloads"
 									]
 								}
 							},
@@ -3238,15 +3531,1680 @@
 				},
 				{
 					"name": "Variations",
-					"item": []
+					"item": [
+						{
+							"name": "Create variations",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"regular_price\": \"9.00\",\r\n  \"image\": {\r\n    \"id\": 56\r\n  },\r\n  \"attributes\": [\r\n    {\r\n      \"id\": 6,\r\n      \"option\": \"Blue\"\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Individual product variation by Variation ID",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations/159",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations",
+										"159"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all variations by product ID",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update variation by product ID and variation ID",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"regular_price\": \"10.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations/159",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations",
+										"159"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete product variation by ID",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations/160",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations",
+										"160"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batch update product variations",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"create\": [\r\n    {\r\n      \"regular_price\": \"11.00\",\r\n      \"attributes\": [\r\n        {\r\n          \"id\": 6,\r\n          \"option\": \"blue\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"regular_price\": \"11.00\",\r\n      \"attributes\": [\r\n        {\r\n          \"id\": 6,\r\n          \"option\": \"red\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"update\": [\r\n    {\r\n      \"id\": 156,\r\n      \"regular_price\": \"10.00\"\r\n    }\r\n  ],\r\n  \"delete\": [\r\n    161\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/129/variations/batch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"129",
+										"variations",
+										"batch"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Attributes",
-					"item": []
+					"item": [
+						{
+							"name": "Create a product global attribute ",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Test Color\",\r\n  \"slug\": \"pa_testcolor\",\r\n  \"type\": \"select\",\r\n  \"order_by\": \"menu_order\",\r\n  \"has_archives\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a product attribute",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all product attributes",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a product attribute",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"order_by\": \"name\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a product attribute",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batch update product attributes",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"create\": [\r\n    {\r\n      \"name\": \"Brand\"\r\n    },\r\n    {\r\n      \"name\": \"Publisher\"\r\n    }\r\n  ],\r\n  \"update\": [\r\n    {\r\n      \"id\": 4,\r\n      \"order_by\": \"name\"\r\n    }\r\n  ],\r\n  \"delete\": [\r\n    5\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/batch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"batch"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Attribute terms",
-					"item": []
+					"item": [
+						{
+							"name": "Create an attribute term",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"XS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/4/terms",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"4",
+										"terms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve an attribute term",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/4/terms/42",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"4",
+										"terms",
+										"42"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all attribute terms",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/1/terms",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"1",
+										"terms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an attribute term",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"XXL\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/4/terms/48",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"4",
+										"terms",
+										"48"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an attribute term",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/4/terms/47?force=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"4",
+										"terms",
+										"47"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batch update attribute terms",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"create\": [\r\n    {\r\n      \"name\": \"XXM\"\r\n    },\r\n    {\r\n      \"name\": \"S\"\r\n    }\r\n  ],\r\n  \"update\": [\r\n    {\r\n      \"id\": 49,\r\n      \"menu_order\": 6\r\n    }\r\n  ],\r\n  \"delete\": [\r\n    50,\r\n    51\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/products/attributes/4/terms/batch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"products",
+										"attributes",
+										"4",
+										"terms",
+										"batch"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Coupons",
+					"item": [
+						{
+							"name": "Create a coupon",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"code\": \"10off\",\r\n  \"discount_type\": \"percent\",\r\n  \"amount\": \"10\",\r\n  \"individual_use\": true,\r\n  \"exclude_sale_items\": true,\r\n  \"minimum_amount\": \"100.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/coupons",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"coupons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a coupon",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/coupons/187",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"coupons",
+										"187"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all coupons",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/coupons",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"coupons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a coupon",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"amount\": \"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/coupons/187",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"coupons",
+										"187"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a coupon",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/coupons/187?force=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"coupons",
+										"187"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Order",
@@ -3331,6 +5289,927 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Retrieve an order",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/165",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"165"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all orders",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an Order",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"completed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/165",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"165"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an order",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/165",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"165"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batch update orders",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"create\": [\r\n    {\r\n        \"customer_id\":3,\r\n      \"payment_method\": \"bacs\",\r\n      \"payment_method_title\": \"Direct Bank Transfer\",\r\n      \"billing\": {\r\n        \"first_name\": \"Deepa\",\r\n        \"last_name\": \"Doe\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"phone\": \"(555) 555-5555\"\r\n      },\r\n      \"shipping\": {\r\n        \"first_name\": \"Deepa\",\r\n        \"last_name\": \"Doe\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\"\r\n      },\r\n      \"line_items\": [\r\n        {\r\n          \"product_id\": 19,\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"product_id\": 14,\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"product_id\": 129,\r\n          \"variation_id\": 149,\r\n          \"quantity\": 1\r\n        }\r\n      ],\r\n      \"shipping_lines\": [\r\n        {\r\n          \"method_id\": \"flat_rate\",\r\n          \"method_title\": \"Flat Rate\",\r\n          \"total\": \"30.00\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"customer_id\":2,\r\n      \"payment_method\": \"bacs\",\r\n      \"payment_method_title\": \"Direct Bank Transfer\",\r\n      \"set_paid\": true,\r\n      \"billing\": {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"phone\": \"(555) 555-5555\"\r\n      },\r\n      \"shipping\": {\r\n        \"first_name\": \"John\",\r\n        \"last_name\": \"Doe\",\r\n        \"address_1\": \"969 Market\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"CA\",\r\n        \"postcode\": \"94103\",\r\n        \"country\": \"US\"\r\n      },\r\n      \"line_items\": [\r\n        {\r\n          \"product_id\": 129,\r\n          \"variation_id\": 155,\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"product_id\": 129,\r\n          \"variation_id\": 156,\r\n          \"quantity\": 1\r\n        }\r\n      ],\r\n      \"shipping_lines\": [\r\n        {\r\n          \"method_id\": \"flat_rate\",\r\n          \"method_title\": \"Flat Rate\",\r\n          \"total\": \"20.00\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"update\": [\r\n    {\r\n      \"id\": 168,\r\n      \"shipping_methods\": \"Local Delivery\"\r\n    }\r\n  ],\r\n  \"delete\": [\r\n    175,176,177\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/batch",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"batch"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order notes",
+					"item": [
+						{
+							"name": "Create an order note",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"note\": \"Order ok!!!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/164/notes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"164",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve an order note",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/164/notes/48",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"164",
+										"notes",
+										"48"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all order notes",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/164/notes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"164",
+										"notes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an order note",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/164/notes/48?force=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"164",
+										"notes",
+										"48"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Refunds",
+					"item": [
+						{
+							"name": "List all refunds",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/126/refunds",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"126",
+										"refunds"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a refund",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"amount\": \"2675\",  \r\n  \"line_items\": [\r\n    {\r\n      \"id\": \"111\",\r\n      \"refund_total\": 2675,\r\n      \"refund_tax\": [\r\n        {\r\n          \"id\" : \"222\",\r\n          \"refund_total\": 0\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/126/refunds",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"126",
+										"refunds"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a refund",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/126/refunds/185",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"126",
+										"refunds",
+										"185"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a refund",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/orders/126/refunds/185",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"orders",
+										"126",
+										"refunds",
+										"185"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3401,8 +6280,2393 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Retrieve an payment gateway",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/payment_gateways/bacs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"payment_gateways",
+										"bacs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a payment gateway",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"enabled\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/payment_gateways/bacs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"payment_gateways",
+										"bacs"
+									]
+								}
+							},
+							"response": []
 						}
 					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "List all reports",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve sales report",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/sales",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve top sellers report",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/top_sellers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"top_sellers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve coupons totals",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/coupons/totals",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"coupons",
+										"totals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve customers totals",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/customers/totals",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"customers",
+										"totals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve orders totals",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/orders/totals",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"orders",
+										"totals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve products totals",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/products/totals",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"products",
+										"totals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve reviews totals",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/reports/reviews/totals",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"reports",
+										"reviews",
+										"totals"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "System status",
+					"item": [
+						{
+							"name": "System status tools",
+							"item": [
+								{
+									"name": "List all tools from system status",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/system_status/tools",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"system_status",
+												"tools"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retrieve a tool from system status",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/system_status/tools/clear_transients",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"system_status",
+												"tools",
+												"clear_transients"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Run a tool from system status",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"confirm\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/system_status/tools/clear_transients",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"system_status",
+												"tools",
+												"clear_transients"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "System status details",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/system_status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"system_status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Settings",
+					"item": [
+						{
+							"name": "Options",
+							"item": [
+								{
+									"name": "List all setting options",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/settings/general",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"settings",
+												"general"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retrieve a setting option by Group ID and Options ID",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/settings/general/woocommerce_allowed_countries",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"settings",
+												"general",
+												"woocommerce_allowed_countries"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update a setting option",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"value\": \"all_except\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/settings/general/woocommerce_allowed_countries",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"settings",
+												"general",
+												"woocommerce_allowed_countries"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Batch update setting options",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"update\": [\r\n    {\r\n      \"id\": \"woocommerce_allowed_countries\",\r\n      \"value\": \"all\"\r\n    },\r\n    {\r\n      \"id\": \"woocommerce_demo_store\",\r\n      \"value\": \"yes\"\r\n    },\r\n    {\r\n      \"id\": \"woocommerce_currency\",\r\n      \"value\": \"GBP\"\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/settings/general/batch",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"settings",
+												"general",
+												"batch"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List all settings groups",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/settings",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"settings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Data",
+					"item": [
+						{
+							"name": "List all data",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all continents",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/continents",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"continents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve continent data",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/continents/eu",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"continents",
+										"eu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all countries",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/countries",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve country data",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/countries/in",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"countries",
+										"in"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all currencies",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/currencies",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"currencies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve currency data",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/currencies/inr",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"currencies",
+										"inr"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve current currency",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "consumerSecret",
+											"value": "{{Consumer Secret}}",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "{{Consumer Key}}",
+											"type": "string"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "callback",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA256",
+											"type": "string"
+										},
+										{
+											"key": "includeBodyHash",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/wp-json/wc/v3/data/currencies/current",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wp-json",
+										"wc",
+										"v3",
+										"data",
+										"currencies",
+										"current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Shipping",
+					"item": [
+						{
+							"name": "Shipping zones",
+							"item": [
+								{
+									"name": "Create a shipping zone",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"India\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping/zones",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping",
+												"zones"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retrieve a shipping zone",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping/zones/1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping",
+												"zones",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List all shipping zones",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping/zones",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping",
+												"zones"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update a shipping zone",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"order\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping/zones/1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping",
+												"zones",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a shipping zone",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping/zones/1?force=true",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping",
+												"zones",
+												"1"
+											],
+											"query": [
+												{
+													"key": "force",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Shipping zone locations",
+							"item": []
+						},
+						{
+							"name": "Shipping zone methods",
+							"item": []
+						},
+						{
+							"name": "Shipping methods",
+							"item": [
+								{
+									"name": "List all shipping methods",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping_methods",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping_methods"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retrieve a shipping method",
+									"request": {
+										"auth": {
+											"type": "oauth1",
+											"oauth1": [
+												{
+													"key": "consumerSecret",
+													"value": "{{Consumer Secret}}",
+													"type": "string"
+												},
+												{
+													"key": "consumerKey",
+													"value": "{{Consumer Key}}",
+													"type": "string"
+												},
+												{
+													"key": "addParamsToHeader",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "callback",
+													"value": "",
+													"type": "string"
+												},
+												{
+													"key": "signatureMethod",
+													"value": "HMAC-SHA256",
+													"type": "string"
+												},
+												{
+													"key": "includeBodyHash",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "addEmptyParamsToSign",
+													"value": false,
+													"type": "boolean"
+												},
+												{
+													"key": "version",
+													"value": "1.0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/wp-json/wc/v3/shipping_methods/flat_rate",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"wp-json",
+												"wc",
+												"v3",
+												"shipping_methods",
+												"flat_rate"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Product shipping classes",
+					"item": []
+				},
+				{
+					"name": "Tax rates",
+					"item": []
+				},
+				{
+					"name": "Tax classes",
+					"item": []
+				},
+				{
+					"name": "Webhooks",
+					"item": []
 				}
 			]
 		}
