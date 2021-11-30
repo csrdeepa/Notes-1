@@ -70,6 +70,8 @@ function dcsGetPostsFtn($atts, $additonalArr=array()){
  }
 
 function dcsEnqueue_scripts() {
+	wp_enqueue_style( 'load-style', get_stylesheet_directory_uri().'/style.css'  );
+	
 	wp_enqueue_script( 'dcsLoadMorePostsScript', get_stylesheet_directory_uri() . '/loadmoreposts.js', array( 'jquery' ), '20131205', true );
 	wp_localize_script( 'dcsLoadMorePostsScript', 'dcs_frontend_ajax_object',	array( 	'ajaxurl' => admin_url( 'admin-ajax.php' )	)	);
 }
