@@ -1,0 +1,241 @@
+To hide wonderplugin watermark:
+.wonderplugin-gridgallery-list .wonderplugin-gridgallery-item > a, #html5-watermark {
+    display: none !important;
+}
+
+[OR]
+ 
+.wonderplugin-gridgallery-item a div {
+    display: none !important;
+    visibility: hidden !important;
+    font-size: 0px !important;
+    background-color: #eee0 !important;
+}
+To hide wonder carousel plugin watermark:
+[1]
+.amazingcarousel-list .amazingcarousel-item .amazingcarousel-image a ~ div a {
+    display: none !important;
+    visibility: hidden !important;
+}
+[OR] [2]
+.amazingcarousel-list .amazingcarousel-item .amazingcarousel-image a ~ div {
+    display: none !important;
+    visibility: hidden !important;
+    background-color: #0000 !important;
+    color: #0000 !important;
+}
+.amazingcarousel-list .amazingcarousel-item .amazingcarousel-image a ~ div a {
+    display: none !important;
+    visibility: hidden !important;
+    color: #0000 !important;    
+}
+[OR] [3]
+.amazingcarousel-image div:not(.amazingcarousel-image-fix-wrapper) a {
+    display: none !important;
+    font-size: 0px !important;
+    visibility: hidden;
+    color: #fff0 !important;
+}
+.amazingcarousel-image div:not(.amazingcarousel-image-fix-wrapper) {
+    background-color: #fff0 !important;
+}
+
+
+Form input box FOCUS issue:
+.wpcf7-form-control-wrap {
+    position: unset;
+}
+
+WP Add Mime Types Admin Settings
+otf = font/otf
+sfnt = font/sfnt
+ttf = font/ttf
+woff = font/woff
+woff2 = font/woff2
+
+In web_config:
+define('ALLOW_UNFILTERED_UPLOADS', true);
+
+Add Additional File Types to be Uploaded in WordPress by code:
+function my_myme_types($mime_types){
+    $mime_types['svg'] = 'image/svg+xml'; //Adding svg extension
+    $mime_types['psd'] = 'image/vnd.adobe.photoshop'; //Adding photoshop files
+    return $mime_types;
+}
+add_filter('upload_mimes', 'my_myme_types', 1, 1);
+
+Adjust Image: (zoom in and show specific area of image) (Sample AW)
+img{
+    background-position: right 20% top 29%;
+    background-size: 100% 494%;
+}
+
+Image from right edge
+@media only screen and (min-width: 1000px) {
+.sec_function .secfunc_rightimg {
+    width: 50vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -52%;
+    margin-right: -50vw;
+}
+.sec_function .secfunc_leftcontent {
+    width: 50%;
+    padding-right: 4%;
+    margin: 0;
+}
+}
+
+
+
+Wonder Carousel Arrow Icon using Font Awesome and Custom Background Image
+1. Arrow Icon using Font Awesome
+
+#amazingcarousel-CAROUSELID .amazingcarousel-prev {
+  margin-left: 0px !important;
+    left: 4% !important;
+    top: 45% !important;
+    background:none !important;
+}
+
+#amazingcarousel-CAROUSELID .amazingcarousel-next {
+ margin-right: 0px !important;
+    right: 4% !important;
+    top: 45% !important;
+    background:none !important;   
+}
+
+#amazingcarousel-CAROUSELID .amazingcarousel-prev:before{
+  font-family: "Font Awesome 5 Free" !important;
+   content: "\f053";
+   display: inline-block;
+   padding-right: 3px;
+   vertical-align: middle;
+   font-weight: 900;
+   color:#fff;
+   font-size:50px;
+    line-height: 45px;
+}
+#amazingcarousel-CAROUSELID .amazingcarousel-next:before{
+font-family: "Font Awesome 5 Free" !important;
+   content: "\f054";
+   display: inline-block;
+   padding-right: 3px;
+   vertical-align: middle;
+   font-weight: 900;
+    color:#ffffff;
+    font-size:50px;
+    line-height: 45px;
+}
+
+2. Arrow Icon using Custom Image For Wonder Carousel
+
+#amazingcarousel-CAROUSELID .amazingcarousel-prev {
+    margin-top: -16px;
+    margin-left: 0px !important;
+    left: 3% !important;
+    top: 35% !important;
+    background-position: left bottom !important;
+    height:65px !important;
+   width:53px !important;
+}
+#amazingcarousel-CAROUSELID .amazingcarousel-next {
+    margin-top: -16px;
+    margin-right: 0px !important;
+    right: 4% !important;
+    top: 35% !important;
+    background-position: right bottom !important;
+    height:65px !important;
+}
+
+3. Arrow Icon using Font Awesome and change the responsive design for Hstudio
+
+@media only screen and (max-width: 519px) {
+.wonderplugincarousel .amazingcarousel-next,
+.wonderplugincarousel .amazingcarousel-prev {
+    position: relative !important;
+    background: none !important;
+ display: block !important;
+}
+.wonderplugincarousel .amazingcarousel-prev {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+    float: left;
+    left: 80px; 
+}
+.wonderplugincarousel .amazingcarousel-next {
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+ float: right;
+    right: 80px; 
+}
+.wonderplugincarousel .amazingcarousel-prev:after {
+    content: '<';
+}
+.wonderplugincarousel .amazingcarousel-next:before{
+    content: '>';
+} 
+.wonderplugincarousel .amazingcarousel-prev:after,
+.wonderplugincarousel .amazingcarousel-next:before{
+ font-size: 50px;
+    font-weight: 700;
+} 
+}
+
+
+
+
+3. Arrow Icon using external image and change the responsive design for Hstudio
+
+attach : custom-arrows-dark-50-50.png or custom-arrows-light-50-50.png
+
+@media (max-width: 720px) {  
+ .wonderplugincarousel .amazingcarousel-prev {
+  left: 0% !important;
+  margin-left: 30% !important;
+ }
+ .wonderplugincarousel .amazingcarousel-next {
+  right: 0% !important;
+  margin-right: 30% !important;
+ }
+ .wonderplugincarousel .amazingcarousel-prev,
+ .wonderplugincarousel .amazingcarousel-next {
+  top: 100% !important;
+  margin-top: 0px !important;
+ } 
+}
+
+For Strong Testimonial: (and 
+
+@media only screen and (max-width: 1024px) {
+    .strong-content.strong-columns.columns-2 {
+        -webkit-column-count: 1 !important;
+        -moz-column-count: 1 !important;
+        column-count: 1 !important;
+    }
+    
+    .strong-view.controls-style-buttons:not(.rtl) .wpmslider-prev:before {
+        content: url(/wp-content/uploads/2020/06/custom-leftarrow-dark-34.png);
+        -webkit-mask-image: url(/wp-content/uploads/2020/06/custom-leftarrow-dark-34.png);
+        height: 34px !important;
+    }
+    .strong-view.controls-style-buttons:not(.rtl) .wpmslider-next:before {
+        content: url(/wp-content/uploads/2020/06/custom-leftarrow-dark-34.png);
+        -webkit-mask-image: url(/wp-content/uploads/2020/06/custom-rightarrow-dark-34.png);
+        height: 34px !important;
+    }
+}
+
+
+
+Adjust Mobile Menu: (Vertical align)
+@media only screen and (max-width: 1024px) {
+    .fusion-mobile-menu-icons{
+        float: right;
+        height: 120px;
+        display: flex !important;
+        align-items: center;
+    }
+}
+
