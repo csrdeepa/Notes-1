@@ -1,0 +1,65 @@
+<?php
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+function my_theme_enqueue_styles() {
+ wp_enqueue_style( 'child-style', get_stylesheet_directory_uri().'/style.css', array( 'avada-stylesheet' ) );
+ 
+ wp_register_script( 'child-script', get_stylesheet_directory_uri().'/childscript.js');
+ wp_enqueue_script( 'child-script' );
+}
+ 
+/*@Child Theme*/
+
+function foo_copyright($atts, $content = null) {  //[foo_copyright sitemapurl="/sitemap" termsandconditions="#"  privacypolicy="#" ]
+ extract(shortcode_atts(array( 'sitemapurl' => '#', 'termsandconditions' => '#', 'privacypolicy' => '/contact-us/privacy-policy/' ), $atts));
+ $code= '<div class="footer_copyright">
+ <div class="fctop">
+  <div class="fcleft">Farm 48, Corner Belvidere Road & Carrara Hill Road Ebenezer, 5355, South Australia </div>
+  <div class="fccenter"><a href="tel:61399828700">Ph: +61 3 9982 8700</a></div>   
+  <div class="fcright">';
+ 
+  //$code .=  do_shortcode( '[fusion_global id="89"]' ); 
+  $code .= '<div class="fc_social sec">
+      <a class="" href="https://www.facebook.com/kularaestate" target="_blank" rel="noopener noreferrer" title="Facebook">
+       <span class="screen-reader-text">Facebook</span> <img src="/wp-content/uploads/2020/07/facebook-icon.png" style="width:auto;" alt="Facebook"></a>
+      <a class="" href="https://www.instagram.com/edgemillgroup/" target="_blank" rel="noopener noreferrer" title="Instagram">
+       <span class="screen-reader-text">Instagram</span><img src="/wp-content/uploads/2020/07/instagram-icon.png" style="width:auto;" alt="Instagram"></a>
+     </div>';
+  $code .='</div>    
+  </div>
+  <hr>
+  <div class="fcbottom">
+   <div class="fcleft">
+    <div>©️ 2020 <a href="'. get_home_url() .' ">Edgemill Group Pty Ltd </a>| All Rights Reserved | Website by <a href="https://hstudios.com.au/">Hstudios</a></div> 
+   </div>
+   <div class="fcright">
+    <ul class="fcmenu" style="list-style-type:none">
+     <li><a href="'. $sitemapurl .'">SITEMAP</a></li>
+     <li><a href="'. $termsandconditions .'">TERMS & CONDITIONS</a></li>
+     <li><a href="'. $privacypolicy .'">PRIVACY POLICY</a></li>
+    </ul>
+   </div>
+  </div> 
+  </div>';
+ return $code;
+}
+add_shortcode('foo_copyright','foo_copyright');
+ 
+function globalfusion_element_foo_copyright(){ 
+  echo do_shortcode( '[fusion_global id="78"]' );
+}
+add_shortcode('globalfusion_element_foo_copyright','globalfusion_element_foo_copyright');
+
+// Remove update notifications
+function remove_update_notifications( $value ) {
+    if ( isset( $value ) && is_object( $value ) ) {
+        unset( $value->response[ 'wonderplugin-carousel/wonderplugincarousel.php' ] );
+    }
+    return $value;
+}
+add_filter( 'site_transient_update_plugins', 'remove_update_notifications' );
+function remove_core_updates(){
+global $wp_version;return(object) array('last_checked'=> time(),'version_checked'=> $wp_version,);
+}
+add_filter('pre_site_transient_update_core','remove_core_updates');
+add_filter('pre_site_transient_update_plugins','remove_core_updates');
+add_filter('pre_site_transient_update_themes','remove_core_updates');
