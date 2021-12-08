@@ -1,0 +1,341 @@
+footer.php
+<script>
+ function bookingorder() {
+  var bookform = jQuery("#bookings");
+  var element = jQuery("#btnbook");
+  var alertmsg = jQuery("#bookingalert");
+   jQuery.ajax({
+   type:'POST',
+   url:'/sendmail.php',
+   data:bookform.serialize(),
+   dataType:'json',
+   beforeSend: function(){
+    element.val('Please wait..');
+             element.prop("disabled", true);
+   },
+   success:function(resp){
+    if(alertmsg.hasClass('failed')){
+        alertmsg.removeClass('failed');
+     alertmsg.addClass('success');
+    } else {
+     alertmsg.addClass('success');
+    }
+    jQuery("#bookingalert").html(resp.message);
+    element.val('Send');
+    element.prop("disabled", false);
+   },
+   error:function(err){
+    var data = JSON.parse(err.responseText);
+    if(alertmsg.hasClass('sucess')){
+        alertmsg.removeClass('sucess');
+     alertmsg.addClass('failed');
+    } else {
+     alertmsg.addClass('failed');
+    }
+    jQuery("#bookingalert").html(data.message);
+    element.val('Send');
+    element.prop("disabled", false);
+   }
+    });
+ }
+</script>
+
+header.php
+<script src="/wp-content/uploads/2017/11/contactvalidation.js" type="text/javascript" charset="utf-8"></script>
+
+ContactValidation.js:
+// alert("this");
+jQuery(document).ready(function() {
+
+ jQuery('.send-contact-form').attr("disabled",true); 
+ 
+ jQuery("#tel-contact-form").attr({"maximum" : 10, "minmum" : 10 });  
+
+ var letters1 = /^[a-zA-Z]+$/;
+// var letters2 =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+ var letters2  = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// var letters3 = /^[0-9?=.)(+-]+$/;
+  var letters3 = /^[0-9]+$/;
+
+jQuery('#name-contact-form').keyup(function() { 
+
+if(!this.value.match(letters1)){
+
+if(!jQuery('.name_valid_span').length)
+{
+  jQuery('#name-contact-form' ).after( '<span class="name_valid_span" style="color: #f00;font-size: 1em;display: block;">The name must be in letters.</span>' );
+   jQuery('.send-contact-form').attr("disabled",true); 
+   jQuery('#name-contact-form').css('border-color', '#E90F0F');
+}
+}else{
+  if(jQuery('.name_valid_span').length){
+   jQuery('.name_valid_span' ).remove();
+      jQuery('#name-contact-form').removeAttr("style");
+   jQuery('#name-contact-form').css('border-color', '#009C87');
+  }
+   var val1 = document.getElementById("name-contact-form").value;
+   var val2 = document.getElementById("email-contact-form").value;
+   var val3 = document.getElementById("tel-contact-form").value;
+
+    if(val1.match(letters1) && val2.match(letters2) && val3.match(letters3)){  
+          jQuery('.send-contact-form').attr("disabled",false); 
+       }
+  }
+});
+
+jQuery('#name-contact-form').focusout(function() { 
+
+if(this.value.length <3 || this.value.length >20){
+
+if(!jQuery('.name_valid_span').length)
+{
+  jQuery('#name-contact-form' ).after( '<span class="name_valid_span" style="color: #f00;font-size: 1em;display: block;">The name must be minimum 3 Characters.</span>' );
+   jQuery('.send-contact-form').attr("disabled",true); 
+   jQuery('#name-contact-form').css('border-color', '#E90F0F');
+}
+}else{
+  if(jQuery('.name_valid_span').length){
+   jQuery('.name_valid_span' ).remove();
+      jQuery('#name-contact-form').removeAttr("style");
+   jQuery('#name-contact-form').css('border-color', '#009C87');
+  }
+   var val1 = document.getElementById("name-contact-form").value;
+   var val2 = document.getElementById("email-contact-form").value;
+   var val3 = document.getElementById("tel-contact-form").value;
+
+    if(val1.match(letters1) && val2.match(letters2) && val3.match(letters3)){  
+          jQuery('.send-contact-form').attr("disabled",false); 
+       }
+  }
+});
+
+
+jQuery('#email-contact-form').focusout(function() {
+
+if(!this.value.match(letters2)){
+
+if(!jQuery('.email_valid_span').length)
+{
+  jQuery('#email-contact-form' ).after( '<span class="email_valid_span" style="color: #f00;font-size: 1em;display: block;">The email is invalid.</span>' );
+  jQuery('.send-contact-form').attr("disabled",true); 
+  jQuery('#email-contact-form').css('border-color', '#E90F0F');
+}
+}else{
+  if(jQuery('.email_valid_span').length){ 
+   jQuery('.email_valid_span' ).remove();
+   jQuery('#email-contact-form').removeAttr("style");
+   jQuery('#email-contact-form').css('border-color', '#009C87');
+  }
+   var val1 = document.getElementById("name-contact-form").value;
+   var val2 = document.getElementById("email-contact-form").value;
+   var val3 = document.getElementById("tel-contact-form").value;
+
+    if(val1.match(letters1) && val2.match(letters2) && val3.match(letters3)){  
+         jQuery('.send-contact-form').attr("disabled",false); 
+       }
+  }
+});
+
+jQuery("#tel-contact-form").keypress(function(e) {
+  
+var theEvent = e || window.event;
+var key = theEvent.keyCode || theEvent.which;
+
+ // Don't validate the input if below arrow, delete and backspace keys were pressed 
+ if(key == 37 || key == 38 || key == 39 || key == 40 || key == 8 || key == 46) { // Left / Up / Right / Down Arrow, Backspace, Delete keys
+     return;
+ }
+ 
+ key = String.fromCharCode( key );
+ 
+  var regex = /^[0-9]+$/;
+
+    if (regex.test(key)) {
+        return true;
+    }
+
+    theEvent.preventDefault();
+    return false;
+});
+
+
+jQuery('#tel-contact-form').focusout(function() {
+
+if(!this.value.match(letters3)  || this.value.length <10){
+
+if(!jQuery('.tel_valid_span').length)
+{
+  jQuery('#tel-contact-form' ).after( '<span class="tel_valid_span" style="color: #f00;font-size: 1em;display: block;">The telephone number is invalid.</span>' );
+  jQuery('.send-contact-form').attr("disabled",true);
+  jQuery('#tel-contact-form').css('border-color', '#E90F0F'); 
+}
+}
+else{
+  if(jQuery('.tel_valid_span').length){
+     jQuery('.tel_valid_span' ).remove();
+  jQuery('#tel-contact-form').removeAttr("style");
+   jQuery('#tel-contact-form').css('border-color', '#009C87');
+  }
+   var val1 = document.getElementById("name-contact-form").value;
+   var val2 = document.getElementById("email-contact-form").value;
+   var val3 = document.getElementById("tel-contact-form").value;
+
+    if(val1.match(letters1) && val2.match(letters2) && val3.match(letters3)){  
+         jQuery('.send-contact-form').attr("disabled",false); 
+       }
+  }
+});
+
+
+jQuery('#tel-contact-form').keyup(function() {
+
+if(!this.value.match(letters3)  || this.value.length >10){
+
+if(!jQuery('.tel_valid_span').length)
+{
+  jQuery('#tel-contact-form' ).after( '<span class="tel_valid_span" style="color: #f00;font-size: 1em;display: block;">Not enough digits for a Phone number</span>' );
+  jQuery('.send-contact-form').attr("disabled",true);
+  jQuery('#tel-contact-form').css('border-color', '#E90F0F'); 
+}
+}
+else{
+  if(jQuery('.tel_valid_span').length){
+     jQuery('.tel_valid_span' ).remove();
+  jQuery('#tel-contact-form').removeAttr("style");
+   jQuery('#tel-contact-form').css('border-color', '#009C87');
+  }
+   var val1 = document.getElementById("name-contact-form").value;
+   var val2 = document.getElementById("email-contact-form").value;
+   var val3 = document.getElementById("tel-contact-form").value;
+
+    if(val1.match(letters1) && val2.match(letters2) && val3.match(letters3)){  
+         jQuery('.send-contact-form').attr("disabled",false); 
+       }
+  }
+});
+
+});
+
+
+Page Editor:
+<div class="screen-reader-response" role="alert" aria-live="polite"></div>
+   <form id="bookings" class="wpcf7-form" onsubmit="event.preventDefault(); bookingorder();">
+      <p> Your Name (required) <span><input type="text" name="name" value="" size="40" class="" required></span></p>
+      <p> Your Email (required)<span><input type="email" name="email" value="" size="40" class="" required></span></p>
+      <p>Phone (required)<span><input type="tel" name="phone" value="" size="40" class="" maximum="10" minmum="10" required></span></p>
+      <p>Subject<span><input type="text" name="purpose" value="" size="40" class="" required></span> </p>
+      <p>Your Message<span><textarea name="message" cols="40" rows="10" class=""></textarea></span></p>
+      <p><input id="btnbook" type="submit" value="Send"><span class="book-ajax-loader"></span></p>
+       <div id="bookingalert" class="booking-alert" role="alert" aria-hidden="true"></div>
+   </form>
+</div>
+
+sendmail.php
+<?php
+
+$name =""; // Sender Name
+$email =""; // Sender's email ID
+$purpose =""; // Subject of mail
+$message =""; // Sender's Message
+
+$Errors ="";
+
+if(isset($_POST['email'])) { 
+
+    // Checking null values in message.
+    if (empty($_POST["name"])){
+        $Errors .= "<p> Name is required </p>";
+    } else {
+        $name = test_input($_POST["name"]); 
+        // check name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            $Errors .= "<p> Only letters and white space allowed in name field</p>";
+        }
+    } 
+    
+    // Checking null values inthe message.
+    if (empty($_POST["email"])) {
+        $Errors .= "<p> Email is required </p>";
+    } else {
+        $email = test_input($_POST["email"]);
+        // check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $Errors .= "<p> Invalid email address. </p>";
+        }
+    } 
+
+    if (empty($_POST["phone"])) {
+        $Errors .= "<p> Phone number is required </p>";
+      } else {
+        $phone = test_input($_POST["phone"]);
+        // check if e-mail address is well-formed
+        if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i",$phone)){
+          $Errors .= "<p> Invalid phone number </p>"; 
+        }
+      }
+
+    // Checking null values inmessage.
+    if (empty($_POST["purpose"])) {
+        $Errors .= "<p> Subject is required </p>";
+    } else {
+        $purpose = test_input($_POST["purpose"]);
+    } 
+
+    // Checking null values inmessage.
+    if (empty($_POST["message"])) {
+        $Errors .= "<p> Message is required </p>";
+    } else {
+        $message = test_input($_POST["message"]);
+    } 
+
+    if($Errors != "") {
+        http_response_code(400);
+        echo json_encode(array(
+            "status" => 'error',
+            "message" => $Errors
+        ));
+    }
+
+    // Checking null values inthe message.
+    if( $Errors == "" && !($name=='') && !($email=='') && !($purpose=='') &&!($message=='') ) { 
+        // Checking valid email.
+        $mailto = "deepa.r@osoftz.com";
+        $mailfrom = "deepa.r@osoftz.com";
+        $subject = "Booking enquiry";
+
+        $message = "Name : " . $_POST["name"] . "<br>";
+        $message .= "Email : " . $_POST["email"] . "<br>";
+        $message .= "Subject : " . $_POST["purpose"] . "<br>";
+        $message .= "Message " . $_POST["message"] . "<br>";
+        
+
+        //header 
+        $headers = "MIME-Version: 1.0\r\n"; // Defining the MIME version 
+        $headers .= "From:".$mailfrom."\r\n";// Sender Email 
+        $headers .= "Reply-To: ".$_POST["email"]."\r\n"; // Email addrress to reach back 
+        $headers .= "Content-Type: text/html;\r\n"; // Defining Content-Type 
+
+        if (mail($mailto, $subject, $message, $headers)) {
+            http_response_code(200);
+            echo json_encode(array(
+                "status" => 'success',
+                "message" => '<p> Thank you for booking, We will be in touch shortly. </p>'
+            ));
+        } else {
+            http_response_code(400);
+            echo json_encode(array(
+                "status" => 'error',
+                "message" => '<p> Oops! Something went wrong. We were unable book you now. Please try after sometime. </p>'
+            ));
+        }
+    }
+} 
+
+// Function for filtering input values.function test_input($data)
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
