@@ -1,0 +1,40 @@
+key features
+interpreted
+dynamically typed
+oops
+writing code is quick
+use in many spheres
+
+/***********
+diff bw list and tup
+mutable - editable. syntax with [ bracket
+immutable - can't editable. syntax with ( bracket
+
+/***********
+developed for scripting
+but now it is general purpose
+
+/***********
+case sensitive
+Indentation is necessary 
+Interpreted language
+
+/***********
+Memory management - managed by Private heap space
+
+/***********
+built in Modules:
+os
+sys
+math
+random
+data time
+JSON
+
+/***********
+Type conversion:
+int()
+float()
+
+
+
