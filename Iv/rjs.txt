@@ -1,0 +1,77 @@
+features of React?
+JSX
+Components
+One-way Data Binding
+Virtual DOM
+Simplicity
+Performance
+
+Explain the lifecycle methods of React components in detail.
+The important React lifecycle methods are:
+
+getInitialState(): It is used to specify the default value of this.state. It is executed before the creation of the component.
+componentWillMount(): It is executed before a component gets rendered into the DOM.
+componentDidMount(): It is executed when the component gets rendered and placed on the DOM. Now, you can do any DOM querying operations.
+componentWillReceiveProps(): It is invoked when a component receives new props from the parent class and before another render is called. If you want to update the State in response to prop changes, you should compare this.props and nextProps to perform State transition by using this.setState() method.
+shouldComponentUpdate(): It is invoked when a component decides any changes/updation to the DOM and returns true or false value based on certain conditions. If this method returns true, the component will update. Otherwise, the component will skip the updating.
+componentWillUpdate(): It is invoked before rendering takes place in the DOM. Here, you can't change the component State by invoking this.setState() method. It will not be called, if shouldComponentUpdate() returns false.
+componentDidUpdate(): It is invoked immediately after rendering takes place. In this method, you can put any code inside this which you want to execute once the updating occurs.
+componentWillUnmount(): It is invoked immediately before a component is destroyed and unmounted permanently. It is used to clear up the memory spaces such as invalidating timers, event listener, canceling network requests, or cleaning up DOM elements. If a component instance is unmounted, you cannot mount it again.
+
+
+Redux
+-  library used to manage the application state. 
+- React uses Redux to build the user interface.
+- It is a predictable state container for JavaScript applications
+- used for the entire application’s state management.
+
+
+components of Redux?
+Store: Holds the state of the application.
+Action: The source information for the store.
+Reducer: Specifies how the application's state changes in response to actions sent to the store.
+
+
+React Router?
+- React Router is a routing library built on top of React, 
+- which is used to create routes in a React application. 
+
+
+
+/********
+//https://firehydrant.io/blog/moving-from-redux-thunk-to-redux-saga-a-walk-through/  
+https://github.com/reduxjs/redux-thunk
+https://redux-saga.js.org/
+https://engineering.universe.com/what-is-redux-saga-c1252fc2f4d1
+
+
+
+//https://decembersoft.com/posts/redux-thunk-vs-redux-saga/
+Thunks versus Sagas
+Redux-thunk and Redux-saga are both middleware libraries for Redux. Redux middleware is code that intercepts actions coming into the store via the dispatch() method.
+
+An action can be literally anything.
+
+But if you're following best practices, an action is a plain javascript object with a type field, and optional payload, meta, and error fields. E.g.
+
+const loginRequest = {
+    type: 'LOGIN_REQUEST',
+    payload: {
+        name: 'admin',
+        password: '123',
+    },
+};
+
+
+Example Syntax:
+type Action = {
+    type: string;
+    payload?: any;
+    meta?: any;
+    error?: boolean;
+};
+
+
+------------
+
+Both Redux Thunk and Redux Saga take care of dealing with side effects. In most of the scenarios, Thunk uses Promises to deal with them, whereas Saga uses Generators. Thunk is simple to use and Promises are familiar to many developers, Sagas/Generators are more powerful but you will need to learn them. But both middleware can coexist, so you can start with Thunks and introduce Sagas when/if you need them.
