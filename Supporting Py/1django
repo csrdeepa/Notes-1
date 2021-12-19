@@ -25,6 +25,8 @@ Step 3:
 		activate.bat
 		(or)
 		from the vscode terminal(Ctrl+Shift+`)
+		(or)
+		 & D:/py/src/Scripts/Activate.ps1
 Step 4: 
 	check the package details in the virtualenv
 Step 5: 
