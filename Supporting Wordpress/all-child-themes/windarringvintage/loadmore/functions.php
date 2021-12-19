@@ -1,14 +1,15 @@
+/*********************** */
 // [ajaxloadmoreblogdemo post_type="post" initial_posts="3" loadmore_posts="3"]
 
 add_shortcode('ajaxloadmoreblogdemo','ajaxloadmoreblogdemo');
 function ajaxloadmoreblogdemo($atts, $content = null){
 	ob_start();
 	$atts = shortcode_atts(
-			array(
-		'post_type' => 'post',
-		'initial_posts' => '3',
-		'loadmore_posts' => '3',
-		), $atts, $tag
+				array(
+				'post_type' => 'post',
+				'initial_posts' => '3',
+				'loadmore_posts' => '3',
+				), $atts, $tag
 			);
 		$additonalArr = array();
 		$additonalArr['appendBtn'] = true;
@@ -24,7 +25,6 @@ function ajaxloadmoreblogdemo($atts, $content = null){
 		<?php
     return ob_get_clean();
 }
-
 
 function dcsGetPostsFtn($atts, $additonalArr=array()){ 
 	$args = array(
@@ -70,8 +70,7 @@ function dcsGetPostsFtn($atts, $additonalArr=array()){
  }
 
 function dcsEnqueue_scripts() {
-	wp_enqueue_style( 'load-style', get_stylesheet_directory_uri().'/style.css'  );
-	
+	// wp_enqueue_style( 'load-style', get_stylesheet_directory_uri().'/style.css'  );
 	wp_enqueue_script( 'dcsLoadMorePostsScript', get_stylesheet_directory_uri() . '/loadmoreposts.js', array( 'jquery' ), '20131205', true );
 	wp_localize_script( 'dcsLoadMorePostsScript', 'dcs_frontend_ajax_object',	array( 	'ajaxurl' => admin_url( 'admin-ajax.php' )	)	);
 }
@@ -88,4 +87,85 @@ function dcsAjaxLoadMorePostsAjaxReq(){
 	$atts["post_type"] = $postType;
 	dcsGetPostsFtn($atts, $additonalArr);
 	die();
+}
+
+add_action("wp_head", "loadmorepostgridcss");
+function loadmorepostgridcss(){
+	?>
+	<style>
+	 /* load more posts demo styles */
+		.dcsDemoWrapper {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.dcsDemoWrapper .loadMoreRepeat {
+			/* width: 50%; */
+			width:calc(100% /3);
+			padding: 10px;
+		}
+		.dcsDemoWrapper .loadMoreRepeat .innerWrap {
+			background: #fff;
+			padding: 15px;
+		}
+		.btnLoadmoreWrapper {
+			text-align: center;
+			margin-top: 10px;
+			width: 100%;
+		}
+		p.noMorePostsFound {
+			text-align: center;
+			width: 100%;
+			margin-top: 20px;
+			color: red;
+			font-size: 18px;
+		}
+		svg {
+		width: 100px;
+		height: 100px;
+		margin: 20px;
+		display: inline-block;
+		}
+		.dcsLoaderImg {width: 100%;text-align: center;}
+	</style>
+	<script>
+		 jQuery(document).ready(function(){
+		jQuery(document).on('click','.dcsLoadMorePostsbtn',function(){
+			var ajaxurl = dcs_frontend_ajax_object.ajaxurl;
+			var dcsPostType = jQuery('input[name="dcsPostType"]').val();
+			var offset = parseInt(jQuery('input[name="offset"]').val() );
+			var dcsloadMorePosts = parseInt(jQuery('input[name="dcsloadMorePosts"]').val() );
+			var newOffset = offset+dcsloadMorePosts;
+
+			jQuery('.btnLoadmoreWrapper').hide();
+			jQuery.ajax({
+				type: "POST",
+				url: ajaxurl,
+				data: ({
+					action: "dcsAjaxLoadMorePostsAjaxReq",
+					offset: newOffset,
+					dcsloadMorePosts: dcsloadMorePosts,
+					postType: dcsPostType,
+				}),
+				success: function(response){
+					if (!jQuery.trim(response)){ 
+						// blank output
+						jQuery('.noMorePostsFound').show();
+					}else{
+						// append to last div
+						jQuery(response).insertAfter(jQuery('.loadMoreRepeat').last());
+						jQuery('input[name="offset"]').val(newOffset);
+						jQuery('.btnLoadmoreWrapper').show();
+					}
+				},
+				beforeSend: function() {
+					jQuery('.dcsLoaderImg').show();
+				},
+				complete: function(){
+					jQuery('.dcsLoaderImg').hide();
+				},
+			});
+		});
+	});
+	</script>
+	<?php
 }
