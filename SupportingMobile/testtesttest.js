@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
-
+//https://enappd.com/blog/google-login-in-react-native-android-apps-with-firebase/90/
 const App = () => {
 
   const [visible, setVisible] = useState(false);
