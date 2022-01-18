@@ -1,0 +1,38 @@
+###### Full Clean of a React Native Project ######
+
+watchman watch-del-all
+rm -rf yarn.lock package-lock.json node_modules
+rm -rf android/app/build
+rm ios/Pods ios/Podfile.lock 
+rm -rf ~/Library/Developer/Xcode/DerivedData
+npm install && cd ios && pod update && cd ..
+npm start -- --reset-cache
+
+## Or, in a single command:
+watchman watch-del-all && killall -9 node && rm -rf yarn.lock package-lock.json node_modules ios/Pods ios/Podfile.lock android/app/build && npm install && cd ios && pod update && cd .. && npm start -- --reset-cache
+
+
+/**************************************************/
+scripts: { 
+  "clean:android": "cd android && ./gradlew clean && cd ../",
+  "clean:ios": "cd ios && xcodebuild clean && cd ../", 
+}
+/**************************************************/
+
+Generate APK:
+
+#React-Native 0.59
+react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res
+[OR]
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+[OR]
+mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew clean assembleRelease && cd ../
+
+
+cd android
+./gradlew assembleDebug    
+ [OR]
+./gradlew assembleRelease #Generated `apk` will be located at `android/app/build/outputs/apk`
+
+
+
