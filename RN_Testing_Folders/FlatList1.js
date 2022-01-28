@@ -3,7 +3,23 @@ import { FlatList, StyleSheet, Text, View, Alert } from 'react-native';
 
 export default function FlatList1() {
   const [currentIndex, setCurrentIndex]=React.useState(0)
+const [search, setSearch]=React.useState(false)
+const [Searchdata, setSearchdata]=React.useState([])
 
+    const callClose = (status) => { setSearch(status) }
+
+    const callSearch = async (searchitem) => {
+        setSearch(true)
+        let searchresult = await finddata(testdata, searchitem).filter(function (e) { return e })
+        setSearchdata(searchresult[0])
+    }
+
+    function finddata(data, value) {
+        return data.map((item) => {
+            return item.list.find(item => item.id = - value)
+        })
+    }
+  
   const renderItem = ({ item, index }) => (
      <View style={currentIndex == index ? styles.SelectedlistItem : styles.listItem} >
       <Text onPress={()=>setCurrentIndex(index)}> {item.title} </Text>
@@ -13,6 +29,7 @@ export default function FlatList1() {
 const onPressFunction=()=>{
 
 }
+
 const test=()=>{
     <View style={{ padding: 5 }}>
       <Text onPress={()=>alert(JSON.stringify(item) + "   Index :" + index)}> {item.title} </Text>
@@ -22,6 +39,7 @@ const test=()=>{
 
   return (
     <View style={{ marginTop: 100 }}>
+//     <Header Bar headName=('Select Vehicle'} searchPress=(callSearch) closePress=callClose) />
       <FlatList
         data={testdata}
         renderItem={renderItem}
