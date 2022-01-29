@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { FlatList, StyleSheet, Text, View, Alert, TextInput, TouchableOpacity } from 'react-native';
+import { Card, Checkbox } from 'react-native-paper';
 
 export default function TestFlatList1() {
     const [currentIndex, setCurrentIndex] = React.useState(0)
     const [search, setSearch] = React.useState(false)
     const [searchid, setSearchid] = React.useState('')
     const [Searchdata, setSearchdata] = React.useState([])
+    const [checked, setChecked] = React.useState(false);
+    const [checkedstate, setCheckedstate] = React.useState([]);
 
     const callClose = (status) => { setSearch(status) }
 
     const callSearch = async (searchitem) => {
         setSearch(true)
-        let searchresult = await finddatatest(testdata, searchid) .filter(function (e) { return e })
+        let searchresult = await finddatatest(testdata, searchid).filter(function (e) { return e })
         finddatatest(testdata, searchid)
         setSearchdata(searchresult[0])
         console.log("VVVVVVVV :", JSON.stringify(searchresult));
@@ -22,8 +25,8 @@ export default function TestFlatList1() {
             let x = item.list.find(e => e.id == searchid)
             if (x) {
                 setCurrentIndex(index)
-                return x 
-            } 
+                return x
+            }
         })
     }
     function finddata(data, value) {
@@ -50,9 +53,13 @@ export default function TestFlatList1() {
         </View>
     }
 
+    function onCheck(params) {
+        
+    }
+
     return (
         <View style={{ marginTop: 100 }}>
-            {/* <Header Bar headName={'Select Vehicle'} searchPress={callSearch} closePress={callClose} /> */}
+            {/* <Header Bar headName={'Select'} searchPress={callSearch} closePress={callClose} /> */}
             <View style={{ flexDirection: 'row', padding: 10 }}>
                 <TextInput
                     style={{ width: '50%', backgroundColor: '#f2f2f2' }}
@@ -73,25 +80,49 @@ export default function TestFlatList1() {
                 horizontal
             />
             <View>
-                {!search &&
+                {!search && testdata ?
                     testdata[currentIndex].list.map((item) => (
-                        <View style={{ flexDirection: 'row' }} key={item.id}>
-                            <Text>{item.id}</Text>
-                            <Text>{item.status}</Text>
-                        </View>
+                        <Card style={{ margin: 5 }} key={item.id}>
+                            <View style={{ padding: 10, margin: 5, flexDirection: 'row', justifyContent: 'space-between', }}
+                                key={item.id}
+                            >
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Checkbox
+                                        id={`custom-checkbox-${item.id}`}
+                                        status={checked ? 'checked' : 'unchecked'}
+                                        onPress={() => {
+                                            //alert(item.status)
+                                            setChecked(!checked);
+                                        }}
+                                    />
+                                    <Text>{item.id}</Text>
+                                </View>
+                                <Text>{item.status}</Text>
+                            </View>
+                        </Card>
                     ))
+                    :
+                    null
                 }
-            </View>
 
-            <View>
                 {
-                    Searchdata &&
-                    <View style={{ flexDirection: 'row' }} key={Searchdata.id}>
-                        <Text>{Searchdata.id}</Text>
-                            <Text>{Searchdata.status}</Text>
+                    search && Searchdata ?
+                        <Card style={{ margin: 5 }} key={Searchdata.id}  >
+                            <View style={{ flexDirection: 'row' }} key={Searchdata.id}>
+                                <Checkbox
+                                    key={Searchdata.id}
+                                    status={checked ? 'checked' : 'unchecked'}
+                                    onPress={() => {
+                                        setChecked(!checked);
+                                    }}
+                                />
+                                <Text>{Searchdata.id}</Text>
+                                <Text>{Searchdata.status}</Text>
+                            </View>
+                        </Card>
 
-                    </View>
-
+                        :
+                        null
                 }
             </View>
         </View>
