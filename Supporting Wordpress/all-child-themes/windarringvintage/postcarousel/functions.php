@@ -186,20 +186,21 @@ function postgridcss(){
 				nav:true,
 				arrows: true,
 				margin:15,
-				autpPlay:true,
+				autoplay:true,
+				autoplayTimeout:3000,
 				navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
 				responsive:{
 					0:{
 						items:1
 					},
 					601:{
-						items:3
+						items:2
 					},            
-					981:{
-						items:5
-					},
+// 					981:{
+// 						items:2
+// 					},
 					1201:{
-						items:6
+						items:3
 					}
 				}
 			});
