@@ -43,7 +43,7 @@ function post_carousel($atts, $content = null){
     return ob_get_clean();
 }
 
-function post_list(){
+function post_list($atts, $additonalArr){
 	$posts = get_posts(array(
         'post_status'    => 'publish',
         'posts_per_page' => -1,
