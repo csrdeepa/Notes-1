@@ -289,3 +289,12 @@ function add_search_box_to_menu( $items, $args ) {
     return $form;
  
 }
+
+
+
+// Avada child shortcodes
+
+add_action( 'avada_after_main_container', 'mustache_custom_footer' );
+function mustache_custom_footer() {
+    echo do_shortcode ('[fusion_global id="2774"]');
+}
